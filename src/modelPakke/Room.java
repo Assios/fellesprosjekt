@@ -1,15 +1,19 @@
 package modelPakke;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeSupport;
+
 public class Room {
 
 	private int size;
 	private String name;
+	private PropertyChangeSupport propChangeSupp;
 	
 	// Constructor
 	public Room(int size, String name) {
-		super();
 		this.size = size;
 		this.name = name;
+		propChangeSupp = new PropertyChangeSupport(this);
 	}
 	
 	
@@ -18,13 +22,19 @@ public class Room {
 		return size;
 	}
 	public void setSize(int size) {
+		int oldSize = this.size;
 		this.size = size;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, "date", oldSize, size);
+		propChangeSupp.firePropertyChange(event);
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
+		String oldName = this.name;
 		this.name = name;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, "name", oldName, name);
+		propChangeSupp.firePropertyChange(event);
 	}
 	
 	
