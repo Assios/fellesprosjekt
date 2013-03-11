@@ -298,6 +298,8 @@ public class User {
 		
 		if (aPerson.getName().compareTo(getName()) != 0) 
 			return false;
+		if (aPerson.getPassword().compareTo(getPassword()) != 0) 
+			return false;
 		if (aPerson.getEmail().compareTo(getEmail()) != 0)
 			return false;
 		if (aPerson.getDateOfBirth().compareTo(getDateOfBirth()) != 0)
@@ -311,6 +313,7 @@ public class User {
 	 */
 	public String toString() {
 		String s = "Name: " + getName() + "; ";
+		s += "Password: " + getPassword() + "; ";
 		s += "Email: " + getEmail() + "; ";
 		s += "Date of birth: " + getDateOfBirth().toString();
 		return s;
