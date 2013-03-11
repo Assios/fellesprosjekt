@@ -27,6 +27,11 @@ public class User {
 	/**
 	 * This member variable holds the person's date of birth.
 	 */
+	private String password;
+	/*
+	 * Holds password
+	 */
+	
 	private Date dateOfBirth;
 	
 	/**
@@ -58,6 +63,16 @@ public class User {
 	 * 
 	 * @see #setEmail(String) the setEmail(String) method
 	 */
+	public final static String PASSWORD_PROPERTY_NAME = "password";
+	/**
+	 * Constant used when calling 
+	 * {@link java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)}
+	 * on {@linkplain #addPropertyChangeListener(java.beans.PropertyChangeListener) registered
+	 * <code>PropertyChangeListener<code> objecs} when the person's password is changed.
+	 * 
+	 * @see #setPassword(String) the setPassword(String) method
+	 */
+	
 	public final static String EMAIL_PROPERTY_NAME = "email";
 	
 	/**
@@ -79,6 +94,7 @@ public class User {
 	public User() {
 		name = "";
 		email = "";
+		password = "";
 		dateOfBirth = new Date();
 		id = System.currentTimeMillis();
 		propChangeSupp = new PropertyChangeSupport(this);
@@ -92,9 +108,10 @@ public class User {
 	 * @param email The person's e-mail address
 	 * @param dateOfBirth The person's date of birth.
 	 */
-	public User(String name, String email, Date dateOfBirth) {
+	public User(String name, String email, String password, Date dateOfBirth) {
 		this();
 		this.name = name;
+		this.password = password;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 	}
@@ -129,6 +146,16 @@ public class User {
 		String oldName = this.name;
 		this.name = name;
 		PropertyChangeEvent event = new PropertyChangeEvent(this, NAME_PROPERTY_NAME, oldName, name);
+		propChangeSupp.firePropertyChange(event);
+	}
+	
+	/*
+	 * Same as for setName, only for password
+	 */
+	public void setPassword(String password) {
+		String oldPassword = this.password;
+		this.password = password;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, PASSWORD_PROPERTY_NAME, oldPassword, password);
 		propChangeSupp.firePropertyChange(event);
 	}
 	
@@ -206,6 +233,10 @@ public class User {
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	public String getPassword(){
+		return password;
 	}
 
 	/**
