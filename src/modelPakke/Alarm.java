@@ -2,12 +2,15 @@ package modelPakke;
 
 import java.util.Date;
 
+
 public class Alarm {
-	
+
+
 	private Date activationTime;
 	private String alarmMessage;
 	private String alarmTitle;
-	
+
+
 	/*
 	 * Default constructor
 	 */
@@ -16,7 +19,8 @@ public class Alarm {
 		alarmMessage = "";
 		alarmTitle = "";
 	}
-	
+
+
 	/*
 	 * Spesific constructor
 	 */
@@ -32,6 +36,7 @@ public class Alarm {
 		return activationTime;
 	}
 
+
 	@SuppressWarnings("deprecation")
 	public void setActivationTime(int year, int month, int date, int hrs, int min) {
 		this.activationTime.setYear(year-1900);
@@ -41,17 +46,21 @@ public class Alarm {
 		this.activationTime.setMinutes(min);
 	}
 
+
 	public String getAlarmMessage() {
 		return alarmMessage;
 	}
+
 
 	public void setAlarmMessage(String alarmMessage) {
 		this.alarmMessage = alarmMessage;
 	}
 
+
 	public String getAlarmTitle() {
 		return alarmTitle;
 	}
+
 
 	public void setAlarmTitle(String alarmTitle) {
 		this.alarmTitle = alarmTitle;
@@ -64,7 +73,8 @@ public class Alarm {
 		s = "Title: " + alarmTitle + "\nMessage: " + alarmMessage + "\nActivation time: " + Integer.toString(activationTime.getHours()) + ":" + Integer.toString(activationTime.getMinutes());
 		return s;
 	}
-	
+
+
+
 
 }
-

@@ -5,21 +5,26 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class Room {
+
 
 	private int size;
 	private String name;
 	private PropertyChangeSupport propChangeSupp;
 	private ArrayList<Date> roomTaken;
-	
+
+
 	// Constructor
 	public Room(int size, String name) {
 		this.size = size;
 		this.name = name;
 		propChangeSupp = new PropertyChangeSupport(this);
 	}
-	
-	
+
+
+
+
 	//Getters og setters
 	public int getSize() {
 		return size;
@@ -39,7 +44,8 @@ public class Room {
 		PropertyChangeEvent event = new PropertyChangeEvent(this, "name", oldName, name);
 		propChangeSupp.firePropertyChange(event);
 	}
-	
+
+
 	//roomTaken
 	@SuppressWarnings("deprecation")
 	public void addTaken(int year, int month, int date, int hrs, int min) {
@@ -51,13 +57,16 @@ public class Room {
 		roomDate.setMinutes(min);
 		roomTaken.add(roomDate);
 	}
-	
+
+
 	public void removeTaken(Date date) {
 		this.roomTaken.remove(this.roomTaken.indexOf(date));
 	}
-	
+
+
 	/*
 	 * Her må vi ha en egen kalender som kan holde oversikt over når rommet er ledig 
 	 * 
 	 */
 }
+

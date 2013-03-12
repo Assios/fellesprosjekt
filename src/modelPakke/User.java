@@ -3,7 +3,6 @@ package modelPakke;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -15,11 +14,6 @@ import java.util.Date;
  */
 public class User {
 	
-	//List of meetings
-	
-	private ArrayList<Meeting> meetings;
-	
-
 	/**
 	 * This member variable holds the person's name.
 	 */
@@ -33,11 +27,6 @@ public class User {
 	/**
 	 * This member variable holds the person's date of birth.
 	 */
-	private String password;
-	/*
-	 * Holds password
-	 */
-	
 	private Date dateOfBirth;
 	
 	/**
@@ -69,16 +58,6 @@ public class User {
 	 * 
 	 * @see #setEmail(String) the setEmail(String) method
 	 */
-	public final static String PASSWORD_PROPERTY_NAME = "password";
-	/**
-	 * Constant used when calling 
-	 * {@link java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)}
-	 * on {@linkplain #addPropertyChangeListener(java.beans.PropertyChangeListener) registered
-	 * <code>PropertyChangeListener<code> objecs} when the person's password is changed.
-	 * 
-	 * @see #setPassword(String) the setPassword(String) method
-	 */
-	
 	public final static String EMAIL_PROPERTY_NAME = "email";
 	
 	/**
@@ -100,10 +79,8 @@ public class User {
 	public User() {
 		name = "";
 		email = "";
-		password = "";
 		dateOfBirth = new Date();
 		id = System.currentTimeMillis();
-		this.meetings = new ArrayList<Meeting>();
 		propChangeSupp = new PropertyChangeSupport(this);
 	}
 	
@@ -115,13 +92,11 @@ public class User {
 	 * @param email The person's e-mail address
 	 * @param dateOfBirth The person's date of birth.
 	 */
-	public User(String name, String email, String password, Date dateOfBirth) {
+	public User(String name, String email, Date dateOfBirth) {
 		this();
 		this.name = name;
-		this.password = password;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
-		this.meetings = new ArrayList<Meeting>();
 	}
 	
 	/**
@@ -154,16 +129,6 @@ public class User {
 		String oldName = this.name;
 		this.name = name;
 		PropertyChangeEvent event = new PropertyChangeEvent(this, NAME_PROPERTY_NAME, oldName, name);
-		propChangeSupp.firePropertyChange(event);
-	}
-	
-	/*
-	 * Same as for setName, only for password
-	 */
-	public void setPassword(String password) {
-		String oldPassword = this.password;
-		this.password = password;
-		PropertyChangeEvent event = new PropertyChangeEvent(this, PASSWORD_PROPERTY_NAME, oldPassword, password);
 		propChangeSupp.firePropertyChange(event);
 	}
 	
@@ -229,7 +194,6 @@ public class User {
 	 */	
 	public void setDateOfBirth(Date dateOfBirth) {
 		Date oldDateOfBirth = this.dateOfBirth;
-		this.dateOfBirth = dateOfBirth;
 		this.dateOfBirth.setYear(dateOfBirth.getYear()-1900);
 		PropertyChangeEvent event = new PropertyChangeEvent(this, DATEOFBIRTH_PROPERTY_NAME, oldDateOfBirth, this.dateOfBirth);
 		propChangeSupp.firePropertyChange(event);
@@ -242,10 +206,6 @@ public class User {
 	 */
 	public String getName() {
 		return name;
-	}
-	
-	public String getPassword(){
-		return password;
 	}
 
 	/**
@@ -270,20 +230,12 @@ public class User {
 	 * Returns this object's unique identification.
 	 * 
 	 * @return The person's unique identification.
+	 *
 	 */
-	public long getId() {
-		return id;
-	}
 	
-	public ArrayList<Meeting> getMeetings() {
-		return meetings;
-	}
-
-	public void setMeetings(ArrayList<Meeting> meetings) {
-		this.meetings = meetings;
-	}
-
-
+	 public long getId() {
+			return id;
+		}
 	/**
 	 * Add a {@link java.beans.PropertyChangeListener} to the listener list.
 	 * 
@@ -316,8 +268,6 @@ public class User {
 		
 		if (aPerson.getName().compareTo(getName()) != 0) 
 			return false;
-		if (aPerson.getPassword().compareTo(getPassword()) != 0) 
-			return false;
 		if (aPerson.getEmail().compareTo(getEmail()) != 0)
 			return false;
 		if (aPerson.getDateOfBirth().compareTo(getDateOfBirth()) != 0)
@@ -331,11 +281,8 @@ public class User {
 	 */
 	public String toString() {
 		String s = "Name: " + getName() + "; ";
-		s += "Password: " + getPassword() + "; ";
 		s += "Email: " + getEmail() + "; ";
 		s += "Date of birth: " + getDateOfBirth().toString();
 		return s;
 	}
-	
-	
 }

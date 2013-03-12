@@ -3,7 +3,7 @@ package modelPakke;
 import java.util.*;
 
 public class Calendar {
-  private ArrayList<Meeting> meetings;
+	private ArrayList<Meeting> meetings;
 	private User user;
 	
 	public Calendar(){
