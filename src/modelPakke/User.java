@@ -230,6 +230,7 @@ public class User {
 	public void setDateOfBirth(Date dateOfBirth) {
 		Date oldDateOfBirth = this.dateOfBirth;
 		this.dateOfBirth = dateOfBirth;
+		this.dateOfBirth.setYear(dateOfBirth.getYear()-1900);
 		PropertyChangeEvent event = new PropertyChangeEvent(this, DATEOFBIRTH_PROPERTY_NAME, oldDateOfBirth, this.dateOfBirth);
 		propChangeSupp.firePropertyChange(event);
 	}
