@@ -49,7 +49,7 @@ public class User {
 	 * This member variable provides functionality for notifying of changes to
 	 * the <code>Group</code> class.
 	 */
-	private PropertyChangeSupport propChangeSupp;
+	private transient PropertyChangeSupport propChangeSupp;
 	
 	/**
 	 * Constant used when calling 
