@@ -9,13 +9,39 @@ public class Meeting {
 	private String description;
 	private User leader;
 	private ArrayList<User> members;
-	Alarm alarm;
+	private Alarm alarm;
 	private Room room;
 	
 	//constructor
 	public Meeting(){
 		
 	}
+	
+	/* TIDEN SETTES PÅ DENNE FORMEN:
+		year - a year after 1900
+		month - a month between 0-11
+		date - day of the month between 1-31
+		hrs - hours between 0-23
+		min - minutes between 0-59
+	 */
+	@SuppressWarnings("deprecation")
+	public void setStartTime(int year, int month, int date, int hrs, int min) {
+		this.startTime.setYear(year);
+		this.startTime.setMonth(month);
+		this.startTime.setDate(date);
+		this.startTime.setHours(hrs);
+		this.startTime.setMinutes(min);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void setEndTime(int year, int month, int date, int hrs, int min) {
+		this.endTime.setYear(year);
+		this.endTime.setMonth(month);
+		this.endTime.setDate(date);
+		this.endTime.setHours(hrs);
+		this.endTime.setMinutes(min);
+	}
+	
 	
 	//returns the start time
 	public Date getStartTime(){
@@ -25,16 +51,6 @@ public class Meeting {
 	//returns the end time
 	public Date getEndTime(){
 		return endTime;
-	}
-	
-	//sets the start time
-	public void setStartTime(Date date){
-		startTime=date;
-	}
-	
-	//sets the end time
-	public void setEndTime(Date date){
-		endTime=date;
 	}
 	
 	//adds a user to the list members

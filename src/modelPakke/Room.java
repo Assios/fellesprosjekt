@@ -41,8 +41,15 @@ public class Room {
 	}
 	
 	//roomTaken
-	public void addTaken(Date date) {
-		this.roomTaken.add(date);
+	@SuppressWarnings("deprecation")
+	public void addTaken(int year, int month, int date, int hrs, int min) {
+		Date roomDate = null;
+		roomDate.setYear(year);
+		roomDate.setMonth(month);
+		roomDate.setDate(date);
+		roomDate.setHours(hrs);
+		roomDate.setMinutes(min);
+		roomTaken.add(roomDate);
 	}
 	
 	public void removeTaken(Date date) {

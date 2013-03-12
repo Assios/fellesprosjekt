@@ -2,6 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="forms-1.3.0.jar" sourcepath="forms-1.3.0-src.zip"/>
+=======
+	<classpathentry kind="lib" path="src/modelPakke/xstream-1.2.2.jar"/>
+>>>>>>> 1d7e71b7118329f45b3285234076217b944834f4
 	<classpathentry kind="output" path="bin"/>
 </classpath>
