@@ -32,8 +32,13 @@ public class Alarm {
 		return activationTime;
 	}
 
-	public void setActivationTime(Date activationTime) {
-		this.activationTime = activationTime;
+	@SuppressWarnings("deprecation")
+	public void setActivationTime(int year, int month, int date, int hrs, int min) {
+		this.activationTime.setYear(year);
+		this.activationTime.setMonth(month);
+		this.activationTime.setDate(date);
+		this.activationTime.setHours(hrs);
+		this.activationTime.setMinutes(min);
 	}
 
 	public String getAlarmMessage() {
@@ -56,7 +61,7 @@ public class Alarm {
  */
 	public String toString(){
 		String s = "";
-		s = "Title: " + alarmTitle + "\nMessage: " + alarmMessage + "\nActivation time: " + activationTime.toString();
+		s = "Title: " + alarmTitle + "\nMessage: " + alarmMessage + "\nActivation time: " + Integer.toString(activationTime.getHours()) + ":" + Integer.toString(activationTime.getMinutes());
 		return s;
 	}
 	
