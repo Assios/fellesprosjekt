@@ -26,7 +26,7 @@ public class Meeting {
 	 */
 	@SuppressWarnings("deprecation")
 	public void setStartTime(int year, int month, int date, int hrs, int min) {
-		this.startTime.setYear(year);
+		this.startTime.setYear(year-1900);
 		this.startTime.setMonth(month);
 		this.startTime.setDate(date);
 		this.startTime.setHours(hrs);
@@ -35,7 +35,7 @@ public class Meeting {
 	
 	@SuppressWarnings("deprecation")
 	public void setEndTime(int year, int month, int date, int hrs, int min) {
-		this.endTime.setYear(year);
+		this.endTime.setYear(year-1900);
 		this.endTime.setMonth(month);
 		this.endTime.setDate(date);
 		this.endTime.setHours(hrs);

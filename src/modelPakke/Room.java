@@ -44,7 +44,7 @@ public class Room {
 	@SuppressWarnings("deprecation")
 	public void addTaken(int year, int month, int date, int hrs, int min) {
 		Date roomDate = null;
-		roomDate.setYear(year);
+		roomDate.setYear(year-1900);
 		roomDate.setMonth(month);
 		roomDate.setDate(date);
 		roomDate.setHours(hrs);

@@ -18,7 +18,7 @@ public class XMLWriter {
 		// even without a constructor, this approach is used.
 		u.setName("Jack");
 		u.setEmail("asgas");
-		u.setDateOfBirth(new Date(1992, 03, 20));
+		u.setDateOfBirth(new Date(1901, 03, 20));
 
 		// Serialize the object
 		XStream xs = new XStream();

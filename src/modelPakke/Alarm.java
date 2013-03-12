@@ -34,7 +34,7 @@ public class Alarm {
 
 	@SuppressWarnings("deprecation")
 	public void setActivationTime(int year, int month, int date, int hrs, int min) {
-		this.activationTime.setYear(year);
+		this.activationTime.setYear(year-1900);
 		this.activationTime.setMonth(month);
 		this.activationTime.setDate(date);
 		this.activationTime.setHours(hrs);
