@@ -9,7 +9,7 @@ public class Meeting {
 	private String description;
 	private User leader;
 	private ArrayList<User> members;
-	Alarm alarm;
+	private Alarm alarm;
 	private Room room;
 	
 	//constructor

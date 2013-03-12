@@ -3,6 +3,7 @@ package modelPakke;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,6 +15,11 @@ import java.util.Date;
  */
 public class User {
 	
+	//List of meetings
+	
+	private ArrayList<Meeting> meetings;
+	
+
 	/**
 	 * This member variable holds the person's name.
 	 */
@@ -97,6 +103,7 @@ public class User {
 		password = "";
 		dateOfBirth = new Date();
 		id = System.currentTimeMillis();
+		this.meetings = new ArrayList<Meeting>();
 		propChangeSupp = new PropertyChangeSupport(this);
 	}
 	
@@ -114,6 +121,7 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
+		this.meetings = new ArrayList<Meeting>();
 	}
 	
 	/**
@@ -265,6 +273,15 @@ public class User {
 	public long getId() {
 		return id;
 	}
+	
+	public ArrayList<Meeting> getMeetings() {
+		return meetings;
+	}
+
+	public void setMeetings(ArrayList<Meeting> meetings) {
+		this.meetings = meetings;
+	}
+
 
 	/**
 	 * Add a {@link java.beans.PropertyChangeListener} to the listener list.
@@ -318,4 +335,6 @@ public class User {
 		s += "Date of birth: " + getDateOfBirth().toString();
 		return s;
 	}
+	
+	
 }
