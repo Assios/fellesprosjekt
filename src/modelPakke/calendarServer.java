@@ -1,5 +1,7 @@
 package modelPakke;
 
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,9 +22,14 @@ import java.util.Scanner;
 import com.thoughtworks.xstream.XStream;
 
 public class calendarServer {
-  private int port;
-	private String serverAdress;
-	private XStream xs = new XStream();
+	ServerSocket providerSocket;
+    Socket connection = null;
+    ObjectOutputStream out;
+    ObjectInputStream in;
+    String message;
+    int port;
+    String serverAdress;
+
 	
 	public calendarServer(int port,String serverAdress)
 	{
@@ -32,66 +39,67 @@ public class calendarServer {
 	
 	public void startServer()
 	{
-		try 
-		{	
-			//Start listening on the ports and adress provided in the constructor
-			ServerSocket serverSocket = new ServerSocket(this.port,50,InetAddress.getByName(this.serverAdress));
-			System.out.println("WAITING FOR CONNECTIONS ON "+this.serverAdress+":"+this.port);
-			
-			//Get a new fresh socket for communicating with the client, we dont use the serversocket
-			Socket clientSocket = serverSocket.accept();
-			//Print out the adress and socket of the client socket. You will see that the port is different, this is because the serversocket uses the 7899
-			//port, so the client is assigned an unused port
-			System.out.println("CONNECTED TO CLIENT ON "+clientSocket.getRemoteSocketAddress());
-			OutputStream clientOutputStream = clientSocket.getOutputStream();
-			//This is commented in the HelloWorldClient class
-			InputStream clientInputStream = clientSocket.getInputStream();
-			ObjectOutputStream oos = new ObjectOutputStream(clientOutputStream);
-			ObjectInputStream ois = new ObjectInputStream(clientInputStream); 
-			
-			System.out.println("WAITING FOR MESSAGE FROM CLIENT");
-			
-			String fromClient=String.valueOf(ois.readObject());
-			oos.writeObject(fromClient);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	public void connectToDatabase(){
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Where is your MySQL JDBC Driver?");
-			e.printStackTrace();
-			return;
-		}
-	 
-		System.out.println("MySQL JDBC Driver Registered!");
-		Connection connection = null;
-	 
-		try {
-			connection = DriverManager
-			.getConnection("jdbc:mysql://127.0.0.1:3306/mydb","root", "password");
-	 
-		} catch (SQLException e) {
-			System.out.println("Connection Failed! Check output console");
-			e.printStackTrace();
-			return;
-		}
-	 
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		}
+		try{
+    		System.out.println("Waiting for connection3");
 
-	}
+    		//1. creating a server socket
+    		providerSocket = new ServerSocket(this.port,50,InetAddress.getByName(this.serverAdress));
+    		//2. Wait for connection
+    		System.out.println("Waiting for connection");
+    		connection = providerSocket.accept();
+    		System.out.println("Connection received from " + connection.getInetAddress().getHostName());
+    		//3. get Input and Output streams
+    		out = new ObjectOutputStream(connection.getOutputStream());
+    		out.flush();
+    		in = new ObjectInputStream(connection.getInputStream());
+    		sendMessage("Connected");
+    		//4. The two parts communicate via the input and output streams
+    		do{
+    			try{
+    				message = (String)in.readObject();
+    				System.out.println("client:"+connection.getLocalPort()+">" + message);
+    				if (message.equals("dc"))
+    					sendMessage("dc");
+    				else{
+    					sendMessage("melding mottat");
+    				}
+    			}
+    			catch(ClassNotFoundException classnot){
+    				System.err.println("Data received in unknown format");
+    			}
+    		}while(!message.equals("dc"));
+    	}
+    	catch(IOException ioException){
+    		ioException.printStackTrace();
+    	}
+    	finally{
+    		//4: Closing connection
+    		try{
+    			in.close();
+    			out.close();
+    			providerSocket.close();
+    		}
+    		catch(IOException ioException){
+    			ioException.printStackTrace();
+    		}
+    	}
+    }
+    void sendMessage(String msg)
+    {
+    	try{
+    		out.writeObject(msg);
+    		out.flush();
+    		System.out.println("server>" + msg);
+    	}
+    	catch(IOException ioException){
+    		ioException.printStackTrace();
+    	}
+    }
+
 	
 	public static void main(String[] args) 
 	{
 		new calendarServer(7899, "78.91.18.220").startServer();
 	}
 }
+
