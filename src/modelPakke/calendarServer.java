@@ -95,7 +95,7 @@ public class calendarServer {
 	
 	public static void main(String[] args) 
 	{
-		new calendarServer(7899, "78.91.18.220").startServer();
+		new calendarServer(7899, "78.91.51.18").startServer();
 	}
 }
 

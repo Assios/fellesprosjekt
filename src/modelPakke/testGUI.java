@@ -38,7 +38,7 @@ public class testGUI extends JPanel{
 		m=new Meeting(new Date(2013, 03,13, 20, 30), new Date(2013,03,13, 21, 00));
 		r=new Room(3, "rom");
 		
-		jL.setCellRenderer(new calendarListCellRenderer());
+	//	jL.setCellRenderer(new calendarListCellRenderer());
 		jL.getCellRenderer().getListCellRendererComponent(jL, u, 0, true,true);
 		add(jL);
 		connectButton.addActionListener(new connectButtonAction());
@@ -51,7 +51,7 @@ public class testGUI extends JPanel{
 	
 	public void setModel(DefaultListModel defaultLModel){
 		jL.setModel(defaultLModel);
-		jL.setCellRenderer(new calendarListCellRenderer());
+	//	jL.setCellRenderer(new calendarListCellRenderer());
 		listSelectionModel=jL.getSelectionModel();
 		//listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
 	}
