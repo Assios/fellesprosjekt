@@ -8,22 +8,29 @@ import java.util.Date;
 
 import javax.swing.*;
 
-public class testGUI extends JPanel implements ActionListener {
+public class testGUI extends JPanel{
   JButton sendButton;
+	JButton connectButton;
+	JButton disconnectButton;
 	JLabel sL;
 	JTextArea fromServer;
 	JList jL=new JList();
 	calendarLogic cL=new calendarLogic();
+	ListSelectionModel listSelectionModel;
 	User u;
 	Meeting m;
 	Room r;
 	
 	public testGUI(){
-		this.setLayout(getLayout());
+			this.setLayout(getLayout());
 		sendButton=new JButton("Send");
+		connectButton=new JButton("Connect");
+		disconnectButton=new JButton("Disconnect");
 		sL=new JLabel("Recieved from server: ");
 		fromServer=new JTextArea(25,25);
 		add(sendButton);
+		add(connectButton);
+		add(disconnectButton);
 		add(sL);
 		add(fromServer);
 		sendButton.addActionListener(this);
@@ -32,13 +39,46 @@ public class testGUI extends JPanel implements ActionListener {
 		m=new Meeting(new Date(2013, 03,13, 20, 30), new Date(2013,03,13, 21, 00));
 		r=new Room(3, "rom");
 		
+		jL.setCellRenderer(new calendarListCellRenderer());
+		jL.getCellRenderer().getListCellRendererComponent(jL, u, 0, true,true);
+		add(jL);
+		connectButton.addActionListener(new connectButtonAction());
+		disconnectButton.addActionListener(new disconnectButtonAction());
+		sendButton.addActionListener(new sendButtonAction());
+		
+		
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) {   // This method is called by JButton.
-		fromServer.setText( cL.connect(m));
+	public void setModel(DefaultListModel defaultLModel){
+		jL.setModel(defaultLModel);
+		jL.setCellRenderer(new calendarListCellRenderer());
+		listSelectionModel=jL.getSelectionModel();
+		//listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+	}
+	
+	class sendButtonAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {        
+            	cL.send(u);
+        }
     }
 	
+	class disconnectButtonAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {        
+            	cL.disConnect();
+        }
+    }
+	
+	class connectButtonAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            try{
+            	cL.connect(u);
+            }
+            catch(Exception e1){
+            	System.out.println("no connection");
+            }
+        }
+    }
 	 public static void main (String args[]) {
 	        JFrame frame = new JFrame("Test");
 	        frame.getContentPane().add(new testGUI());
