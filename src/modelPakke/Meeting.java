@@ -13,8 +13,11 @@ public class Meeting {
 	private Room room;
 	
 	//constructor
-	public Meeting(){
-		
+	public Meeting(Date startTime, Date endTime){
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.startTime.setYear(startTime.getYear()-1900);
+		this.endTime.setYear(endTime.getYear()-1900);
 	}
 	
 	/* TIDEN SETTES PÅ DENNE FORMEN:

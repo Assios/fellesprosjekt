@@ -28,14 +28,15 @@ public class testGUI extends JPanel implements ActionListener {
 		add(fromServer);
 		sendButton.addActionListener(this);
 		u=new User("jimmy", "hadhagds",new Date(22,22,22));
-		m=new Meeting(new Date(22,22,22),new Date(33,33,33));
+		//Meeting starting 13.03.2013 at 20:30, ending 21:00
+		m=new Meeting(new Date(2013, 03,13, 20, 30), new Date(2013,03,13, 21, 00));
 		r=new Room(3, "rom");
 		
 		
 	}
 	
 	public void actionPerformed(ActionEvent e) {   // This method is called by JButton.
-		fromServer.setText( cL.connect(u));
+		fromServer.setText( cL.connect(m));
     }
 	
 	 public static void main (String args[]) {
