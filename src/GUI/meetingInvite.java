@@ -26,23 +26,23 @@ public class meetingInvite extends JFrame{
 		
 		JLabel lblNewLabel = new JLabel("Date:");
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setEnabled(false);
+		JLabel dateVar = new JLabel("New label");
+		dateVar.setEnabled(false);
 		
 		JLabel lblStart = new JLabel("Start:");
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setEnabled(false);
+		JLabel startVar = new JLabel("New label");
+		startVar.setEnabled(false);
 		
 		JLabel lblEnd = new JLabel("End:");
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setEnabled(false);
+		JLabel endVar = new JLabel("New label");
+		endVar.setEnabled(false);
 		
 		JLabel lblLocation = new JLabel("Location:");
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setEnabled(false);
+		JLabel locationVar = new JLabel("New label");
+		locationVar.setEnabled(false);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
@@ -67,14 +67,14 @@ public class meetingInvite extends JFrame{
 									.addGroup(groupLayout.createSequentialGroup()
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 											.addComponent(lblNewLabel)
-											.addComponent(lblNewLabel_1)
+											.addComponent(dateVar)
 											.addComponent(lblLocation)
-											.addComponent(lblNewLabel_4))
+											.addComponent(locationVar))
 										.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(lblNewLabel_3)
+											.addComponent(endVar)
 											.addComponent(lblEnd)
-											.addComponent(lblNewLabel_2)
+											.addComponent(startVar)
 											.addComponent(lblStart)))
 									.addGroup(groupLayout.createSequentialGroup()
 										.addComponent(lblStyremte)
@@ -103,16 +103,16 @@ public class meetingInvite extends JFrame{
 								.addComponent(lblStart))
 							.addGap(3)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_1)
-								.addComponent(lblNewLabel_2))
+								.addComponent(dateVar)
+								.addComponent(startVar))
 							.addGap(11)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblEnd)
 								.addComponent(lblLocation))
 							.addGap(2)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_3)
-								.addComponent(lblNewLabel_4))
+								.addComponent(endVar)
+								.addComponent(locationVar))
 							.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
 							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
