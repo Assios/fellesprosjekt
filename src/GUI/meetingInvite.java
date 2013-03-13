@@ -22,9 +22,9 @@ public class meetingInvite extends JFrame{
 		
 		JLabel lblMemberList = new JLabel("Member list:");
 		
-		JList list = new JList();
+		JList memberList = new JList();
 		
-		JLabel lblNewLabel = new JLabel("Date:");
+		JLabel lblDate = new JLabel("Date:");
 		
 		JLabel dateVar = new JLabel("New label");
 		dateVar.setEnabled(false);
@@ -59,14 +59,14 @@ public class meetingInvite extends JFrame{
 							.addComponent(lblMemberList))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(list, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
+							.addComponent(memberList, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 									.addGroup(groupLayout.createSequentialGroup()
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addComponent(lblNewLabel)
+											.addComponent(lblDate)
 											.addComponent(dateVar)
 											.addComponent(lblLocation)
 											.addComponent(locationVar))
@@ -96,10 +96,10 @@ public class meetingInvite extends JFrame{
 					.addComponent(lblMemberList)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(list, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+						.addComponent(memberList, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel)
+								.addComponent(lblDate)
 								.addComponent(lblStart))
 							.addGap(3)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -122,9 +122,9 @@ public class meetingInvite extends JFrame{
 					.addContainerGap())
 		);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setLineWrap(true);
-		scrollPane.setViewportView(textArea);
+		JTextArea descriptionArea = new JTextArea();
+		descriptionArea.setLineWrap(true);
+		scrollPane.setViewportView(descriptionArea);
 		getContentPane().setLayout(groupLayout);
 	}
 }
