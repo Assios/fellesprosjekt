@@ -1,7 +1,5 @@
 package modelPakke;
 
-import hello_world_framework.HelloWorldServer;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
