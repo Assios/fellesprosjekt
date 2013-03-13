@@ -1,5 +1,6 @@
 package modelPakke;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +21,7 @@ import java.util.Scanner;
 import com.thoughtworks.xstream.XStream;
 
 public class calendarServer {
-  private int port;
+	private int port;
 	private String serverAdress;
 	private XStream xs = new XStream();
 	
@@ -48,11 +49,13 @@ public class calendarServer {
 			InputStream clientInputStream = clientSocket.getInputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(clientOutputStream);
 			ObjectInputStream ois = new ObjectInputStream(clientInputStream); 
-			
+			PrintWriter outToClient = new PrintWriter(clientOutputStream,true);
 			System.out.println("WAITING FOR MESSAGE FROM CLIENT");
 			
 			String fromClient=String.valueOf(ois.readObject());
+			System.out.println("from client "+clientSocket.getInetAddress()+""+fromClient);
 			oos.writeObject(fromClient);
+			outToClient.write("Melding mottat");
 		} 
 		catch (Exception e) 
 		{
@@ -95,3 +98,4 @@ public class calendarServer {
 		new calendarServer(7899, "78.91.18.220").startServer();
 	}
 }
+
