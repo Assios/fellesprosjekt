@@ -33,7 +33,6 @@ public class testGUI extends JPanel{
 		add(disconnectButton);
 		add(sL);
 		add(fromServer);
-		sendButton.addActionListener(this);
 		u=new User("jimmy", "hadhagds",new Date(22,22,22));
 		//Meeting starting 13.03.2013 at 20:30, ending 21:00
 		m=new Meeting(new Date(2013, 03,13, 20, 30), new Date(2013,03,13, 21, 00));
