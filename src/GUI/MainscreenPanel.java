@@ -41,13 +41,16 @@ public class MainscreenPanel extends JFrame{
 		JButton New = new JButton("New");
 		New.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new createNewMeetingPanel().setVisible(true);
 			}
 		});
 		
 		JButton Edit = new JButton("Edit");
+		Edit.setEnabled(false);
 		Edit.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		JButton Detailes = new JButton("Details");
+		Detailes.setEnabled(false);
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		kalender = new JTable();
@@ -79,6 +82,7 @@ public class MainscreenPanel extends JFrame{
 		JButton Right = new JButton(">>");
 		
 		JButton Delete = new JButton("Delete");
+		Delete.setEnabled(false);
 		Delete.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(

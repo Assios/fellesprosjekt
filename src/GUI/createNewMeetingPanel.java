@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.AbstractListModel;
 
 public class createNewMeetingPanel extends JFrame{
 	private JTextField meetingNameField;
@@ -25,6 +26,15 @@ public class createNewMeetingPanel extends JFrame{
 		JLabel lblMemberList = new JLabel("Member list:");
 		
 		JList memberList = new JList();
+		memberList.setModel(new AbstractListModel() {
+			String[] values = new String[] {};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 		
 		JButton btnAdd = new JButton("Add");
 		
