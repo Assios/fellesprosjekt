@@ -1,104 +1,104 @@
 package modelPakke;
 
+import java.io.*;
+import java.net.*;
+import java.security.*;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Scanner;
-
-import com.thoughtworks.xstream.XStream;
+/**
+ * Title:        Sample Server
+ * Description:  This utility will accept input from a socket, posting back to the socket before closing the link.
+ * It is intended as a template for coders to base servers on. Please report bugs to brad at kieser.net
+ * Copyright:    Copyright (c) 2002
+ * Company:      Kieser.net
+ * @author B. Kieser
+ * @version 1.0
+ */
 
 public class calendarServer {
-	ServerSocket providerSocket;
-    Socket connection = null;
-    ObjectOutputStream out;
-    ObjectInputStream in;
-    String message;
-    int port;
-    String serverAdress;
-
 	
-	public calendarServer(int port,String serverAdress)
-	{
-		this.port = port;
-		this.serverAdress = serverAdress;
-	}
-	
-	public void startServer()
-	{
-		try{
-    		System.out.println("Waiting for connection3");
+	String disconnect="dc";
+  private static int port=7899, maxConnections=4;
+  
+  
+  // Listen for incoming connections and handle them
+  public static void main(String[] args) {
+    int i=0;
 
-    		//1. creating a server socket
-    		providerSocket = new ServerSocket(this.port,50,InetAddress.getByName(this.serverAdress));
-    		//2. Wait for connection
-    		System.out.println("Waiting for connection");
-    		connection = providerSocket.accept();
-    		System.out.println("Connection received from " + connection.getInetAddress().getHostName());
-    		//3. get Input and Output streams
-    		out = new ObjectOutputStream(connection.getOutputStream());
-    		out.flush();
-    		in = new ObjectInputStream(connection.getInputStream());
-    		sendMessage("Connected");
-    		//4. The two parts communicate via the input and output streams
-    		do{
-    			try{
-    				message = (String)in.readObject();
-    				System.out.println("client:"+connection.getLocalPort()+">" + message);
-    				if (message.equals("dc"))
-    					sendMessage("dc");
-    				else{
-    					sendMessage("melding mottat");
-    				}
-    			}
-    			catch(ClassNotFoundException classnot){
-    				System.err.println("Data received in unknown format");
-    			}
-    		}while(!message.equals("dc"));
-    	}
-    	catch(IOException ioException){
-    		ioException.printStackTrace();
-    	}
-    	finally{
-    		//4: Closing connection
-    		try{
-    			in.close();
-    			out.close();
-    			providerSocket.close();
-    		}
-    		catch(IOException ioException){
-    			ioException.printStackTrace();
-    		}
-    	}
+    try{
+      ServerSocket listener = new ServerSocket(port);
+      Socket server;
+      System.out.println("Waiting for connection on port :"+port);
+      while((i++ < maxConnections) || (maxConnections == 0)){
+        doComms connection;
+
+        server = listener.accept();
+        doComms conn_c= new doComms(server);
+        Thread t = new Thread(conn_c);
+        t.start();
+      }
+    } catch (IOException ioe) {
+      System.out.println("IOException on socket listen: " + ioe);
+      ioe.printStackTrace();
     }
-    void sendMessage(String msg)
-    {
-    	try{
-    		out.writeObject(msg);
-    		out.flush();
-    		System.out.println("server>" + msg);
-    	}
-    	catch(IOException ioException){
-    		ioException.printStackTrace();
-    	}
+  }
+
+}
+
+class doComms implements Runnable {
+    private Socket server;
+    private String line,input;
+
+    doComms(Socket server) {
+      this.server=server;
     }
 
-	
-	public static void main(String[] args) 
-	{
-		new calendarServer(7899, "78.91.18.220").startServer();
-	}
+    public void run () {
+
+      input="";
+      ObjectOutputStream out;
+      ObjectInputStream in;
+      
+     try{
+        // Get input from the client
+    	  Object object;
+    	  out = new ObjectOutputStream(server.getOutputStream());
+    	  out.flush();
+    	  in = new ObjectInputStream(server.getInputStream());
+    	  
+    	  
+
+       
+        	
+        	do{
+        		object=in.readObject();
+        		System.out.println(object);
+        		
+        		System.out.println("Waiting for object");
+       		 	System.out.println("recieved :"+String.valueOf(object)+"from "+ server.getInetAddress());
+       		 	out.writeObject(object);
+       		 	out.flush();
+       		 	out.reset();
+        	}while(String.valueOf(object)!="dc");	
+        	 
+        	closeConnection(out);        
+        	
+        
+      } catch(Exception e){
+    	  System.out.println("IOException on socket listen: " + e);
+	      e.printStackTrace();
+      }
+    }
+    
+    public void closeConnection(ObjectOutputStream os){
+    	try {
+    		String disconnect="dc";
+    		os.writeObject(disconnect);
+			server.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
 }
 
