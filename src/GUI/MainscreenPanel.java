@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
+import java.awt.Cursor;
 
 public class MainscreenPanel extends JFrame{
 	private JTable kalender;
@@ -47,7 +49,9 @@ public class MainscreenPanel extends JFrame{
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		kalender = new JTable();
+		kalender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		kalender.setRowSelectionAllowed(false);
+		kalender.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		kalender.setToolTipText("");
 		kalender.setModel(new DefaultTableModel(
 			new Object[][] {
