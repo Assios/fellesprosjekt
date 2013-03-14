@@ -22,7 +22,7 @@ public class calendarLogic {
     ObjectOutputStream out;
     ObjectInputStream in;
     String fromServer;
-    
+    String disconnect="dc";
 
 
 	
@@ -34,28 +34,49 @@ public class calendarLogic {
 		try{
 			do{
 			try{
+				
 	    		out.writeObject(convertToXML(object));
+	    		out.flush();
+	    	
 	    		fromServer=(String)in.readObject();
 	    		
-	    		return("client>" + convertToXML(object));
+	    		return(fromServer);
 	    	}
 	    	catch(IOException ioException){
 	    		ioException.printStackTrace();
 	    	}
 			}while(!fromServer.equals("dc"));
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return("no connection");
 		}
-		return("");
+		try {
+			in.close();
+			out.close();
+			serverConnection.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return("disconnected");
 	}
 
 	
-	
+	public void disConnect(){
+		try {
+			
+			send(disconnect);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void connect(Object object) {
 		try{
+			
     		//1. creating a socket to connect to the server
     		serverConnection = new Socket("78.91.18.220", 7899);
     		System.out.println("Connected to 78.91.18.220 in port 7899");
@@ -73,6 +94,8 @@ public class calendarLogic {
 
 
 	}
+	
+	
 	
 	
 	
