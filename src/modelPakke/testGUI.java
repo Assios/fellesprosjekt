@@ -1,5 +1,10 @@
 package modelPakke;
 
+
+
+
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -40,7 +45,7 @@ public class testGUI extends JPanel{
 		r=new Room(3, "rom");
 
 
-		//jL.setCellRenderer(new calendarListCellRenderer());
+		jL.setCellRenderer(new calendarListCellRenderer());
 		jL.getCellRenderer().getListCellRendererComponent(jL, u, 0, true,true);
 		add(jL);
 		connectButton.addActionListener(new connectButtonAction());
@@ -57,7 +62,7 @@ public class testGUI extends JPanel{
 
 	public void setModel(DefaultListModel defaultLModel){
 		jL.setModel(defaultLModel);
-		//jL.setCellRenderer(new calendarListCellRenderer());
+		jL.setCellRenderer(new calendarListCellRenderer());
 		listSelectionModel=jL.getSelectionModel();
 		//listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
 	}
@@ -72,7 +77,7 @@ public class testGUI extends JPanel{
 
 	class disconnectButtonAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {        
-            	cL.send("dc");
+            	cL.disConnect();
         }
     }
 
@@ -96,4 +101,5 @@ public class testGUI extends JPanel{
 
 	 }
 }
+
 
