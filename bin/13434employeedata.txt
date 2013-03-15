@@ -1,5 +1,0 @@
-<xmlTest.Employee>
-  <name>Jack</name>
-  <designation>Manager</designation>
-  <department>Finance</department>
-</xmlTest.Employee>

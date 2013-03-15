@@ -10,11 +10,16 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
+import java.awt.Point;
 
 public class loginPanel extends JFrame{
 	private JPasswordField passwordField;
 	private JTextField usernameField;
 	public loginPanel() {
+		setLocation(new Point(800, 400));
+		setMinimumSize(new Dimension(200, 200));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		passwordField = new JPasswordField();
 		
