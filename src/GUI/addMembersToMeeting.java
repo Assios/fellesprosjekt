@@ -11,10 +11,13 @@ import javax.swing.JLabel;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class addMembersToMeeting extends JFrame{
 	public addMembersToMeeting() {
-		setMinimumSize(new Dimension(450, 300));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(420, 300));
 		setLocation(new Point(800, 400));
 		
 		JList availableList = new JList();
@@ -37,6 +40,11 @@ public class addMembersToMeeting extends JFrame{
 		btnOK.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
