@@ -43,6 +43,12 @@ public class createNewMeetingPanel extends JFrame{
 		});
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new GUI.addMembersToMeeting().setVisible(true);
+				dispose();
+			}
+		});
 		
 		JButton btnDelete = new JButton("Delete");
 		
