@@ -18,10 +18,14 @@ import javax.swing.ListSelectionModel;
 import java.awt.Cursor;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import java.awt.Point;
+import java.awt.Dimension;
 
 public class MainscreenPanel extends JFrame{
 	private JTable kalender;
 	public MainscreenPanel() {
+		setMinimumSize(new Dimension(600, 300));
+		setLocation(new Point(800, 300));
 		setTitle("Mainframe");
 		
 		JLabel Month = new JLabel("Month");

@@ -12,11 +12,15 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.AbstractListModel;
+import java.awt.Point;
+import java.awt.Dimension;
 
 public class createNewMeetingPanel extends JFrame{
 	private JTextField meetingNameField;
 	private JTextField locationField;
 	public createNewMeetingPanel() {
+		setMinimumSize(new Dimension(500, 450));
+		setLocation(new Point(800, 400));
 		
 		JLabel lblMeetingName = new JLabel("Meeting name:");
 		

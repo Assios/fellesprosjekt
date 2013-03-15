@@ -9,9 +9,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Cursor;
+import java.awt.Point;
+import java.awt.Dimension;
 
 public class addMembersToMeeting extends JFrame{
 	public addMembersToMeeting() {
+		setMinimumSize(new Dimension(400, 200));
+		setLocation(new Point(800, 400));
 		
 		JList availableList = new JList();
 		availableList.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
