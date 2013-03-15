@@ -14,7 +14,7 @@ import java.awt.Dimension;
 
 public class addMembersToMeeting extends JFrame{
 	public addMembersToMeeting() {
-		setMinimumSize(new Dimension(400, 200));
+		setMinimumSize(new Dimension(450, 300));
 		setLocation(new Point(800, 400));
 		
 		JList availableList = new JList();
