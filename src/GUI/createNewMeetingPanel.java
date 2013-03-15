@@ -46,7 +46,6 @@ public class createNewMeetingPanel extends JFrame{
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new GUI.addMembersToMeeting().setVisible(true);
-				dispose();
 			}
 		});
 		
