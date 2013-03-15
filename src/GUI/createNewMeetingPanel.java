@@ -14,6 +14,8 @@ import javax.swing.JTextArea;
 import javax.swing.AbstractListModel;
 import java.awt.Point;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class createNewMeetingPanel extends JFrame{
 	private JTextField meetingNameField;
@@ -41,6 +43,12 @@ public class createNewMeetingPanel extends JFrame{
 		});
 		
 		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new GUI.addMembersToMeeting().setVisible(true);
+				dispose();
+			}
+		});
 		
 		JButton btnDelete = new JButton("Delete");
 		
