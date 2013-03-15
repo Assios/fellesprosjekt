@@ -14,6 +14,8 @@ import javax.swing.JTextArea;
 import javax.swing.AbstractListModel;
 import java.awt.Point;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class createNewMeetingPanel extends JFrame{
 	private JTextField meetingNameField;
@@ -77,6 +79,11 @@ public class createNewMeetingPanel extends JFrame{
 		JButton btnSave = new JButton("Save");
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
