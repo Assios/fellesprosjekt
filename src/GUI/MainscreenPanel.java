@@ -55,7 +55,11 @@ public class MainscreenPanel extends JFrame{
 		Edit.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		JButton Detailes = new JButton("Details");
-		Detailes.setEnabled(false);
+		Detailes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new showMeetingInfoPanel().setVisible(true);
+			}
+		});
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		kalender = new JTable();

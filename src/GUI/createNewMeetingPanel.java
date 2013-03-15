@@ -21,6 +21,7 @@ public class createNewMeetingPanel extends JFrame{
 	private JTextField meetingNameField;
 	private JTextField locationField;
 	public createNewMeetingPanel() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(500, 450));
 		setLocation(new Point(800, 400));
 		

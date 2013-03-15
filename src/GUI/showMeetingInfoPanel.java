@@ -11,9 +11,16 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Point;
+import java.awt.Dimension;
 
 public class showMeetingInfoPanel extends JFrame{
 	public showMeetingInfoPanel() {
+		setMinimumSize(new Dimension(400, 350));
+		setLocation(new Point(800, 400));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblMeetingheadline = new JLabel("meetingHeadline:");
 		lblMeetingheadline.setHorizontalAlignment(SwingConstants.CENTER);
@@ -51,6 +58,11 @@ public class showMeetingInfoPanel extends JFrame{
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

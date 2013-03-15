@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 
 public class addMembersToMeeting extends JFrame{
 	public addMembersToMeeting() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(420, 320));
 		setLocation(new Point(800, 400));
 		
