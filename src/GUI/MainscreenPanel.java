@@ -24,6 +24,7 @@ import java.awt.Dimension;
 public class MainscreenPanel extends JFrame{
 	private JTable kalender;
 	public MainscreenPanel() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 300));
 		setLocation(new Point(800, 300));
 		setTitle("Mainframe");
