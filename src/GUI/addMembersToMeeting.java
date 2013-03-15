@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 public class addMembersToMeeting extends JFrame{
 	public addMembersToMeeting() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(420, 300));
+		setMinimumSize(new Dimension(420, 320));
 		setLocation(new Point(800, 400));
 		
 		JList availableList = new JList();
@@ -60,9 +60,7 @@ public class addMembersToMeeting extends JFrame{
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnRight)
 										.addComponent(btnLeft)))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblAvailableMembers)
-									.addGap(129)))
+								.addComponent(lblAvailableMembers))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblMembersInMeeting)
@@ -72,22 +70,21 @@ public class addMembersToMeeting extends JFrame{
 							.addComponent(btnOK, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnCancel)))
-					.addContainerGap(13, Short.MAX_VALUE))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap(16, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblAvailableMembers, Alignment.TRAILING)
-								.addComponent(lblMembersInMeeting, Alignment.TRAILING))
+							.addContainerGap(17, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblAvailableMembers)
+								.addComponent(lblMembersInMeeting))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(availableList, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-								.addComponent(addedList, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.UNRELATED))
+								.addComponent(addedList, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(80)
 							.addComponent(btnRight)
