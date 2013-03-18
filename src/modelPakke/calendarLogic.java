@@ -32,41 +32,35 @@ public class calendarLogic {
 	
 	public String send(Object object){
 		try{
-			do{
+		
 			try{
 				
-	    		out.writeObject(convertToXML(object));
-	    		out.flush();
+					out.writeObject(convertToXML(object));
+	    			out.flush();
 	    	
-	    		fromServer=(String)in.readObject();
+	    			fromServer=(String)in.readObject();
+	    			return(fromServer);
+		
 	    		
-	    		return(fromServer);
 	    	}
 	    	catch(IOException ioException){
-	    		ioException.printStackTrace();
+	    		return("Something went wrong with i/o");
 	    	}
-			}while(!fromServer.equals("dc"));
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return("no connection");
 		}
-		try {
-			in.close();
-			out.close();
-			serverConnection.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		return("disconnected");
+		
 	}
 
 	
 	public void disConnect(){
 		try {
 			
-			send(disconnect);
+			serverConnection.close();
+			System.out.println("disconnected");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,8 +72,8 @@ public class calendarLogic {
 		try{
 			
     		//1. creating a socket to connect to the server
-    		serverConnection = new Socket("78.91.18.220", 7899);
-    		System.out.println("Connected to 78.91.18.220 in port 7899");
+    		serverConnection = new Socket("78.91.19.238", 7899);
+    		System.out.println("Connected to 78.91.19.238  in port 7899");
     		//2. get Input and Output streams
     		out = new ObjectOutputStream(serverConnection.getOutputStream());
     		in = new ObjectInputStream(serverConnection.getInputStream());
@@ -88,6 +82,7 @@ public class calendarLogic {
     		
     		catch(IOException ioException){
     			ioException.printStackTrace();
+    			System.out.println("Hh");
     		}
     	
 
@@ -103,5 +98,6 @@ public class calendarLogic {
 		return(xs.toXML(o));
 	}
 }
+
 
 
