@@ -17,6 +17,7 @@ public class loginPanel extends JFrame{
 	private JPasswordField passwordField;
 	private JTextField usernameField;
 	public loginPanel() {
+		setTitle("Login");
 		setLocation(new Point(800, 400));
 		setMinimumSize(new Dimension(200, 200));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

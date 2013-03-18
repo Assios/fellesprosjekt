@@ -16,6 +16,7 @@ public class editMeetingPanel extends JFrame{
 	private JTextField textField;
 	private JTextField textField_1;
 	public editMeetingPanel() {
+		setTitle("Edit Meet");
 		
 		JLabel lblUser = new JLabel("User:");
 		

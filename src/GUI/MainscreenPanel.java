@@ -26,7 +26,6 @@ public class MainscreenPanel extends JFrame{
 	public MainscreenPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 300));
-		setLocation(new Point(800, 300));
 		setTitle("Mainframe");
 		
 		JLabel Month = new JLabel("Month");

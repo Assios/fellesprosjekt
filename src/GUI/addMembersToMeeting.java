@@ -16,9 +16,9 @@ import java.awt.event.ActionEvent;
 
 public class addMembersToMeeting extends JFrame{
 	public addMembersToMeeting() {
+		setTitle("Add Members");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(420, 320));
-		setLocation(new Point(800, 400));
 		
 		JList availableList = new JList();
 		availableList.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

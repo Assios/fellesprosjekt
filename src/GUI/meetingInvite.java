@@ -14,6 +14,7 @@ import javax.swing.JButton;
 
 public class meetingInvite extends JFrame{
 	public meetingInvite() {
+		setTitle("Meeting");
 		
 		JLabel lblStyremte = new JLabel("meetingTitle:");
 		lblStyremte.setHorizontalAlignment(SwingConstants.CENTER);
