@@ -56,7 +56,8 @@ public class MainscreenPanel extends JFrame{
 		JButton Detailes = new JButton("Details");
 		Detailes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new showMeetingInfoPanel().setVisible(true);
+				//new showMeetingInfoPanel(new modelPakke.Meeting().setVisible(true);
+				//maa ha tilgang til 
 			}
 		});
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
