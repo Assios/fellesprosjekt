@@ -17,7 +17,7 @@ import java.awt.Point;
 import java.awt.Dimension;
 
 public class showMeetingInfoPanel extends JFrame{
-	public showMeetingInfoPanel() {
+	public showMeetingInfoPanel(modelPakke.Meeting meeting) {
 		setTitle("Meeting");
 		setMinimumSize(new Dimension(400, 350));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -28,31 +28,37 @@ public class showMeetingInfoPanel extends JFrame{
 		
 		JLabel lblMemberList = new JLabel("Member list:");
 		
-		JList list = new JList();
+		JList list = new JList(meeting.getMemberList().toArray());
+		//putter ArrayList med medlemmer inn i Jlist (forhaapentligvis)
 		
 		JLabel lblCreator = new JLabel("Creator:");
 		
-		JLabel lblCreatorVar = new JLabel("New label");
+		JLabel lblCreatorVar = new JLabel(meeting.getLeader().getName());
+		//finner navnet til creator som string
 		lblCreatorVar.setEnabled(false);
 		
 		JLabel lblDate = new JLabel("Date:");
 		
-		JLabel lblDateVar = new JLabel("New label");
+		JLabel lblDateVar = new JLabel(meeting.getStartTime().toString());
+		//viser datoen paa starttidspunktet
 		lblDateVar.setEnabled(false);
 		
 		JLabel lblStart = new JLabel("Start:");
 		
-		JLabel lblStartVar = new JLabel("New label");
+		JLabel lblStartVar = new JLabel(Integer.toString(meeting.getStartTime().getHours()) + ":" + Integer.toString(meeting.getStartTime().getMinutes()));
+		//viser starttiden som tt:mm
 		lblStartVar.setEnabled(false);
 		
 		JLabel lblEnd = new JLabel("End:");
 		
-		JLabel lblEndVar = new JLabel("New label");
+		JLabel lblEndVar = new JLabel(Integer.toString(meeting.getEndTime().getHours()) + ":" + Integer.toString(meeting.getEndTime().getMinutes()));
+		//viser sluttiden som tt:mm
 		lblEndVar.setEnabled(false);
 		
 		JLabel lblRoom = new JLabel("Room:");
 		
-		JLabel lblRoomVar = new JLabel("New label");
+		JLabel lblRoomVar = new JLabel(meeting.getRoom().getName());
+		//viser navnet paa sommet
 		lblRoomVar.setEnabled(false);
 		
 		JScrollPane scrollPane = new JScrollPane();
