@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
 public class calendarLogic {
-	Gson xs = new Gson();
+	XStream xs = new XStream();
 	
 	Socket serverConnection;
     ObjectOutputStream out;
@@ -36,7 +36,7 @@ public class calendarLogic {
 		
 			try{
 				
-					out.writeObject(convertToJson(object));
+					//out.writeObject(convertToXML(object));
 	    			out.flush();
 	    	
 	    			fromServer=(String)in.readObject();
@@ -69,12 +69,12 @@ public class calendarLogic {
 		
 	}
 
-	public void connect(Object object) {
+	public void connect() {
 		try{
 			
     		//1. creating a socket to connect to the server
-    		serverConnection = new Socket("78.91.51.74", 7899);
-    		System.out.println("Connected to 78.91.51.74 in port 7899");
+    		serverConnection = new Socket("78.91.48.147", 7899);
+    		System.out.println("Connected to 78.91.48.147  in port 7899");
     		//2. get Input and Output streams
     		out = new ObjectOutputStream(serverConnection.getOutputStream());
     		in = new ObjectInputStream(serverConnection.getInputStream());
@@ -83,7 +83,6 @@ public class calendarLogic {
     		
     		catch(IOException ioException){
     			ioException.printStackTrace();
-    			System.out.println("Hh");
     		}
     	
 
@@ -91,10 +90,38 @@ public class calendarLogic {
 
 	}
 	
-	public String convertToJson(Object o){
-		return(xs.toJson(o));
+
+	public String requestLogin(String id, String password){
+		Request r=new Request("login",id,password,null);
+		
+		try{			
+			try{	
+				Gson gson = new Gson();
+				User user = new User("John Doe","124124", "john@gmail.com", new Date(1992, 23, 05));
+				String json = gson.toJson(user);
+					out.writeObject(json);
+					System.out.println("gsgs");
+	    			out.flush();
+	    	
+	    			fromServer=(String)in.readObject();
+	    			return(fromServer);
+	    		
+	    	}
+	    	catch(IOException ioException){
+	    		return("Something went wrong with i/o");
+	    	}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			return("no connection");
+		}
+		
 	}
+	
+	
+	public String convertToJson(Object o){
+		//return(xs.toJson(o));
+		return("");
+	}
+
 }
-
-
-
