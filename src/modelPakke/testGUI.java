@@ -102,4 +102,3 @@ public class testGUI extends JPanel{
 	 }
 }
 
-
