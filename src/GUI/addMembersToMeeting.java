@@ -15,12 +15,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class addMembersToMeeting extends JFrame{
-	public addMembersToMeeting() {
+	public addMembersToMeeting() {//addMembersToMeeting(Meeting meeting)
 		setTitle("Add Members");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(420, 320));
 		
 		JList availableList = new JList();
+		//new Jlist(meeting.getMemberList.tostring());
 		availableList.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		
 		JList addedList = new JList();

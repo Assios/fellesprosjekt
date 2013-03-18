@@ -23,27 +23,42 @@ import java.util.Date;
 public class editMeetingPanel extends JFrame{
 	private JTextField textField;
 	private JTextField textField_1;
-	public editMeetingPanel() {
+	public editMeetingPanel() {//editMeetingPanel(Meeting meeting)
 		setTitle("Edit Meeting");
 		
 		JLabel lblUser = new JLabel("User:");
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("Username");
+		//new JLabel(meeting.getLeader().getName())
 		lblNewLabel.setEnabled(false);
 		
 		JLabel lblMemberList = new JLabel("Member list:");
 		
 		JList list = new JList();
+		//JList list = new JList(meeting.getMemberList().toArray());
 		
 		JButton btnNewButton = new JButton("Add");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new GUI.addMembersToMeeting().setVisible(true);
+				//addMembersToMeeting(meeting);
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Delete");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnNewButton_1.setEnabled(false);
 		
 		JLabel lblMeetingName = new JLabel("Meeting name:");
 		
 		textField = new JTextField();
+		//new JTextField(meeting.getTitle);
 		textField.setColumns(10);
+	
 		
 		JLabel lblDate = new JLabel("Date:");
 		
