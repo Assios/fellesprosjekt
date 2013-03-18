@@ -10,27 +10,27 @@ import javax.xml.xpath.XPathFactory;
 import org.xml.sax.InputSource;
 
 
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.*;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class XMLReader {
 
     public static void main(String[] args) {
-        XStream xs = new XStream(new DomDriver());
+        Gson gson = new Gson();
         User u = new User();
 
         try {
 
-        	XPathFactory xpathFactory = XPathFactory.newInstance();
+        /*	XPathFactory xpathFactory = XPathFactory.newInstance();
         	XPath xpath = xpathFactory.newXPath();
 
         	InputSource source = new InputSource(new FileReader(
         			"c:/temp/data.txt"));
         	String status = xpath.evaluate("/name/email", source);
-
         	
-            FileInputStream fis = new FileInputStream("c:/temp/data.txt");
-            xs.fromXML(fis, u);
+            FileInputStream fis = new FileInputStream("c:/temp/data.txt");*/
+            gson.toJson(u);
             
             //print the data from the object that has been read
             System.out.println(u.toString());

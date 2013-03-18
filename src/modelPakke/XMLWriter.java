@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Date;
 
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.*;
 
 public class XMLWriter {
@@ -26,17 +27,15 @@ public class XMLWriter {
         
 
         //Serialize the object
-        XStream xs = new XStream();
+		Gson gson = new Gson();
+		User user = new User("John Doe", "john@gmail.com", new Date(1992, 23, 05));
+		
+		//Konverterer fra Javaobjekt til JSON.
+		String json = gson.toJson(user);
         
-        System.out.println(xs.toXML(u));
-        //Write to a file in the file system
-        try {
-            FileOutputStream fs = new FileOutputStream("c:/temp/data.txt");
-            xs.toXML(u, fs);
-            xs.toXML(u2,fs);
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }
+        System.out.println();
+        gson.toJson(u);
+		gson.toJson(u2);
     }
 }
 

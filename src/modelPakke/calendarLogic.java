@@ -13,10 +13,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Date;
 
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
 public class calendarLogic {
-	XStream xs = new XStream();
+	Gson xs = new Gson();
 	
 	Socket serverConnection;
     ObjectOutputStream out;
@@ -35,7 +36,7 @@ public class calendarLogic {
 		
 			try{
 				
-					out.writeObject(convertToXML(object));
+					out.writeObject(convertToJson(object));
 	    			out.flush();
 	    	
 	    			fromServer=(String)in.readObject();
@@ -72,8 +73,8 @@ public class calendarLogic {
 		try{
 			
     		//1. creating a socket to connect to the server
-    		serverConnection = new Socket("78.91.19.238", 7899);
-    		System.out.println("Connected to 78.91.19.238  in port 7899");
+    		serverConnection = new Socket("78.91.51.74", 7899);
+    		System.out.println("Connected to 78.91.51.74 in port 7899");
     		//2. get Input and Output streams
     		out = new ObjectOutputStream(serverConnection.getOutputStream());
     		in = new ObjectInputStream(serverConnection.getInputStream());
@@ -90,12 +91,8 @@ public class calendarLogic {
 
 	}
 	
-	
-	
-	
-	
-	public String convertToXML(Object o){
-		return(xs.toXML(o));
+	public String convertToJson(Object o){
+		return(xs.toJson(o));
 	}
 }
 
