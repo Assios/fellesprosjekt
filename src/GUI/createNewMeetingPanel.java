@@ -83,6 +83,13 @@ public class createNewMeetingPanel extends JFrame{
 		locationField.setColumns(10);
 		
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//check if enough information is given, if it is a new meeting object should be made, and added to the users callendarlist
+				//with constructor Meeting(Date startTime, Date endTime, String title, String description, Room room, String location, ArrayList<User> members)
+				dispose();
+			}
+		});
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {

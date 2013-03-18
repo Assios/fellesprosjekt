@@ -11,6 +11,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class meetingInvite extends JFrame{
 	public meetingInvite() {
@@ -48,8 +50,19 @@ public class meetingInvite extends JFrame{
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnAccept = new JButton("Accept");
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//add meeting to persons Calendarlist
+				//every calendarobject has a user and a meetinglist instance
+			}
+		});
 		
 		JButton btnDecline = new JButton("Decline");
+		btnDecline.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		
 		JLabel lblRoom = new JLabel("Room:");
 		

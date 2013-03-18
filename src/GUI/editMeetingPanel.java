@@ -12,11 +12,19 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import modelPakke.Room;
+import modelPakke.User;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class editMeetingPanel extends JFrame{
 	private JTextField textField;
 	private JTextField textField_1;
 	public editMeetingPanel() {
-		setTitle("Edit Meet");
+		setTitle("Edit Meeting");
 		
 		JLabel lblUser = new JLabel("User:");
 		
@@ -63,8 +71,20 @@ public class editMeetingPanel extends JFrame{
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//check if enough information is given, if it is a new meeting object should be made, and added to the users callendarlist
+				//with constructor Meeting(Date startTime, Date endTime, String title, String description, Room room, String location, ArrayList<User> members)
+				dispose();
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
