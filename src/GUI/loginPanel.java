@@ -31,6 +31,7 @@ public class loginPanel extends JFrame{
 		passwordField = new JPasswordField();
 
 		cL=new calendarLogic();
+		cL.connect();
 		usernameField = new JTextField();
 		usernameField.setColumns(10);
 
@@ -46,7 +47,7 @@ public class loginPanel extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String result=cL.requestLogin(usernameField.getText(),String.valueOf(passwordField.getPassword()));
 				if(result.equals("valid"))
-					new GUI.MainscreenPanel().setVisible(true);
+					new GUI.MainscreenPanel(cL).setVisible(true);
 				else{
 					JOptionPane.showMessageDialog(null,result);
 					usernameField.setText("");

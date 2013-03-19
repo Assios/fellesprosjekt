@@ -1,10 +1,10 @@
 package GUI;
 
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -19,45 +19,52 @@ import javax.swing.ListSelectionModel;
 import java.awt.Cursor;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
-
-import calendarExample.Cal;
-
 import java.awt.Point;
 import java.awt.Dimension;
+import modelPakke.*;
+
 
 public class MainscreenPanel extends JFrame{
-	//private JTable kalender;
-	private JPanel kalender;
-	public MainscreenPanel() {
+	private JTable kalender;
+	private calendarLogic cL;
+	public MainscreenPanel(calendarLogic cl) {
+		cL=cl;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 300));
 		setTitle("Mainframe");
-		
+
+
 		JLabel Month = new JLabel("Month");
 		Month.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Month.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
+
 		JLabel Uke = new JLabel("Uke");
 		Uke.setHorizontalAlignment(SwingConstants.CENTER);
 		Uke.setFont(new Font("Tahoma", Font.BOLD, 15));
-		
+
+
 		JLabel lblUser = new JLabel("user:");
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
+
+
 		JLabel navn = new JLabel("username'");
 		navn.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
+
+
 		JButton New = new JButton("New");
 		New.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new createNewMeetingPanel().setVisible(true);
+				new createNewMeetingPanel(cL).setVisible(true);
 			}
 		});
-		
+
+
 		JButton Edit = new JButton("Edit");
 		Edit.setEnabled(false);
 		Edit.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
+
+
 		JButton Detailes = new JButton("Details");
 		Detailes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -66,15 +73,39 @@ public class MainscreenPanel extends JFrame{
 			}
 		});
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		
-		kalender = new JPanel();
-		kalender.add(new Cal(2013, 3-1, 19));
-		
-		
+
+
+		kalender = new JTable();
+		kalender.setForeground(Color.BLACK);
+		kalender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		kalender.setRowSelectionAllowed(false);
+		kalender.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		kalender.setToolTipText("");
+		kalender.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Time", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "L\u00F8rdag", "S\u00F8ndag"},
+				{"09-10", null, null, null, null, null, null, null},
+				{"10-11", null, null, null, null, null, null, null},
+				{"11-12", null, null, null, null, null, null, null},
+				{"12-13", null, null, null, null, null, null, null},
+				{"13-14", null, null, null, null, null, null, null},
+				{"14-15", null, null, null, null, null, null, null},
+				{"15-16", null, null, null, null, null, null, null},
+				{"16-17", null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Time", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "L\u00F8rdag", "S\u00F8ndag"
+			}
+		));
+		kalender.setBorder(new LineBorder(new Color(0, 0, 0)));
+
+
 		JButton Left = new JButton("<<");
-		
+
+
 		JButton Right = new JButton(">>");
-		
+
+
 		JButton Delete = new JButton("Delete");
 		Delete.setEnabled(false);
 		Delete.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -146,11 +177,13 @@ public class MainscreenPanel extends JFrame{
 		getContentPane().setLayout(groupLayout);
 	}
 
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
 
 	}
 }
