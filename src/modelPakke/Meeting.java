@@ -1,11 +1,14 @@
 package modelPakke;
 
 import java.util.*;
+import java.sql.*;
+import java.sql.Date;
 
 public class Meeting {
-  
-	private Date startTime;
-	private Date endTime;
+	
+	private Time startTime;
+	private Time endTime;
+	private Date date;
 	private String description;
 	private String title;
 	private String location;
@@ -13,9 +16,10 @@ public class Meeting {
 	private ArrayList<User> members;
 	private Alarm alarm;
 	private Room room;
+	private Integer ID;
 	
 	//constructor
-	public Meeting(Date startTime, Date endTime, String title, String description, Room room, String location, ArrayList<User> members){
+	public Meeting(Time startTime, Time endTime, String title, String description, Room room, String location, ArrayList<User> members, Date date, Integer ID){
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.startTime.setYear(startTime.getYear()-1900);
@@ -25,6 +29,19 @@ public class Meeting {
 		this.room = room;
 		this.location = location;
 		this.members = members;
+		this.date = date;
+		this.ID = ID;
+	}
+	
+
+	public Meeting(){
+		this.startTime = null;
+		this.endTime = null;
+		this.title = null;
+		this.description = null;
+		this.room = null;
+		this.location = null;
+		this.members = null;
 	}
 	
 	/* TIDEN SETTES PÅ DENNE FORMEN:
@@ -35,22 +52,14 @@ public class Meeting {
 		min - minutes between 0-59
 	 */
 	@SuppressWarnings("deprecation")
-	public void setStartTime(int year, int month, int date, int hrs, int min) {
-		this.startTime.setYear(year-1900);
-		this.startTime.setMonth(month);
-		this.startTime.setDate(date);
-		this.startTime.setHours(hrs);
-		this.startTime.setMinutes(min);
+	public void setStartTime(int hrs) {
+		this.startTime = new Time(hrs,0,0);
 	}
 	
 
 	@SuppressWarnings("deprecation")
-	public void setEndTime(int year, int month, int date, int hrs, int min) {
-		this.endTime.setYear(year-1900);
-		this.endTime.setMonth(month);
-		this.endTime.setDate(date);
-		this.endTime.setHours(hrs);
-		this.endTime.setMinutes(min);
+	public void setEndTime(int hrs) {
+		this.endTime = new Time(hrs,0,0);
 	}
 	
 	public void setTitle(String title) {
@@ -59,13 +68,29 @@ public class Meeting {
 	
 	
 	//returns the start time
-	public Date getStartTime(){
+	public Time getStartTime(){
 		return startTime;
 	}
 	
 	//returns the end time
-	public Date getEndTime(){
+	public Time getEndTime(){
 		return endTime;
+	}
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
 	}
 	
 	//adds a user to the list members
@@ -125,6 +150,34 @@ public class Meeting {
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+	
+	private boolean compareMembers(Meeting meeting){
+		if (this.members.size() == meeting.members.size()){
+			for(int i = 0; i < meeting.members.size();i++){
+				if(meeting.members.get(i) != this.members.get(i)){
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public boolean equals(Meeting meeting){
+		if(
+			this.alarm == meeting.alarm &&
+			this.room == meeting.room &&
+			this.leader == meeting.leader &&
+			this.location == meeting.location &&
+			this.description == meeting.description &&
+			this.title == meeting.title &&
+			compareMembers(meeting)){
+			return true;
+		}
+		return false;
+				
 	}
 	
 	
