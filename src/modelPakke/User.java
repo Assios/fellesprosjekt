@@ -19,6 +19,8 @@ public class User {
 	 */
 	private String name;
 	
+	private String userName;
+	
 	/**
 	 * This member variable holds the person's email address.
 	 */
@@ -33,6 +35,8 @@ public class User {
 	 * This member variable holds a unique identifier for this object.
 	 */
 	private long id;
+	
+	private String password;
 	
 	/**
 	 * This member variable provides functionality for notifying of changes to
@@ -92,11 +96,13 @@ public class User {
 	 * @param email The person's e-mail address
 	 * @param dateOfBirth The person's date of birth.
 	 */
-	public User(String name, String email, Date dateOfBirth) {
+	public User(String uN,String name, String email, String p, Date dateOfBirth) {
 		this();
+		this.userName=uN;
 		this.name = name;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
+		this.password=p;
 	}
 	
 	/**
@@ -194,7 +200,7 @@ public class User {
 	 */	
 	public void setDateOfBirth(Date dateOfBirth) {
 		Date oldDateOfBirth = this.dateOfBirth;
-		this.dateOfBirth.setYear(dateOfBirth.getYear()-1900);
+		this.dateOfBirth = dateOfBirth;
 		PropertyChangeEvent event = new PropertyChangeEvent(this, DATEOFBIRTH_PROPERTY_NAME, oldDateOfBirth, this.dateOfBirth);
 		propChangeSupp.firePropertyChange(event);
 	}
@@ -232,10 +238,17 @@ public class User {
 	 * @return The person's unique identification.
 	 *
 	 */
+	public String getPassword(){
+		return password;
+	}
 	
 	 public long getId() {
 			return id;
 		}
+	 
+	 public String getUserName(){
+		 return userName;
+	 }
 	/**
 	 * Add a {@link java.beans.PropertyChangeListener} to the listener list.
 	 * 

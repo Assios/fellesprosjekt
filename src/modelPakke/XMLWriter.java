@@ -28,7 +28,7 @@ public class XMLWriter {
 
         //Serialize the object
 		Gson gson = new Gson();
-		User user = new User("John Doe", "john@gmail.com", new Date(1992, 23, 05));
+		User user = new User("JDoe", "John Doe", "john@gmail.com", "password", new Date(1992, 23, 05));
 		
 		//Konverterer fra Javaobjekt til JSON.
 		String json = gson.toJson(user);

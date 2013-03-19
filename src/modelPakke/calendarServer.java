@@ -3,6 +3,7 @@ package modelPakke;
 import java.io.*;
 import java.net.*;
 import java.security.*;
+import java.util.Date;
 
 /**
  * Title:        Sample Server
@@ -16,9 +17,7 @@ import java.security.*;
 
 public class calendarServer {
 	
-	String disconnect="dc";
-  private static int port=7899, maxConnections=4;
-  
+  private static int port=7899, maxConnections=10;
   
   // Listen for incoming connections and handle them
   public static void main(String[] args) {
@@ -47,40 +46,42 @@ public class calendarServer {
 class doComms implements Runnable {
     private Socket server;
     private String line,input;
+    User testUser=new User("blackJack23","Jack", "jack@gmail.com","123456",new Date(22,22,22));
 
     doComms(Socket server) {
       this.server=server;
     }
 
     public void run () {
-
       input="";
       ObjectOutputStream out;
       ObjectInputStream in;
       
      try{
         // Get input from the client
-    	  Object object;
+    	  Object o;
+    	  Request r;
     	  out = new ObjectOutputStream(server.getOutputStream());
     	  out.flush();
     	  in = new ObjectInputStream(server.getInputStream());
-    	  
-    	  
-
-       
-        	
-        	do{
-        		object=in.readObject();
-        		System.out.println(object);
-        		
-        		System.out.println("Waiting for object");
-       		 	System.out.println("recieved :"+String.valueOf(object)+"from "+ server.getInetAddress());
-       		 	out.writeObject(object);
+    	  String disconnect="dc";
+    	  do{
+        		o=in.readObject();
+        		System.out.println("Recieved "+o);
+    		  	/*
+    		  	r=(Request)in.readObject();
+        		System.out.println("Waiting for request");
+       		 	System.out.println("recieved :"+r.getType()+" "+r.getPassword()+" from "+ server.getInetAddress());
+       		 	switch(r.getType()){
+       		 	case "login":out.writeObject(returnLoginResult(r.getUserName(),r.getPassword()));
+       		 				break;
+       		 				}
+       		 	
+       		 	*/	
+       		 	
+       		 	
        		 	out.flush();
-       		 	out.reset();
-        	}while(String.valueOf(object)!="dc");	
-        	 
-        	closeConnection(out);        
+    	  }while(in!=null);
         	
         
       } catch(Exception e){
@@ -100,5 +101,23 @@ class doComms implements Runnable {
 		}
     }
     
+    
+    public String getUsername(){
+    	//foreløpig kode til db connection settes opp
+    	return testUser.getUserName();
+    }
+    
+    public String getPassword(){
+    	//foreløpig kode til db connection settes opp
+    	return testUser.getPassword();
+    }
+    
+    public String returnLoginResult(String userName, String password){
+    	if(userName.equals(getUsername()) && password.equals(getPassword()))
+    		return "valid";
+    	
+    	else
+    		return ("Access denied");	
+    }
+    
 }
-
