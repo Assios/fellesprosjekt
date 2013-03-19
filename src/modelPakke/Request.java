@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.util.Vector;
 
 public class Request implements java.io.Serializable {
+	private static final long serialVersionUID = 6529685098267757690L;
 	String userName,password,avtaleNavn, leader;
 	Time start, slutt;
 	Date dato;
@@ -18,7 +19,6 @@ public class Request implements java.io.Serializable {
 		this.userName=uN;
 		this.password=password;
 		object=o;
-		
 	}
 	
 	public Request(String t,String uN){
