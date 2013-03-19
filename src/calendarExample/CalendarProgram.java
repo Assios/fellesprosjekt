@@ -30,7 +30,7 @@ public class CalendarProgram{
 		catch (UnsupportedLookAndFeelException e) {}
 
 		//Prepare frame
-		frmMain = new JFrame ("Gestionnaire de clients"); //Create frame
+		frmMain = new JFrame ("Kalender"); //Create frame
 		frmMain.setSize(330, 375); //Set size to 400x400 pixels
 		pane = frmMain.getContentPane(); //Get content pane
 		pane.setLayout(null); //Apply null layout
@@ -100,7 +100,7 @@ public class CalendarProgram{
 		//Single cell selection
 		tblCalendar.setColumnSelectionAllowed(true);
 		tblCalendar.setRowSelectionAllowed(true);
-		tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		//Set row/column count
 		tblCalendar.setRowHeight(38);
@@ -163,6 +163,7 @@ public class CalendarProgram{
 				setBackground(new Color(255, 255, 255));
 			}
 			if (value != null){
+				
 				if (Integer.parseInt(value.toString()) == realDay && currentMonth == realMonth && currentYear == realYear){ //Today
 					setBackground(new Color(220, 220, 255));
 				}
