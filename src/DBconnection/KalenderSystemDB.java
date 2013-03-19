@@ -40,7 +40,7 @@ public class KalenderSystemDB {
 		return true;
 	}
 
-	public Hashtable<String, modelPakke.User> getInvited(int avtaleID) 
+	public Hashtable<String, User> getInvited(int avtaleID) 
 	throws ClassNotFoundException, SQLException{
 		Hashtable<String, modelPakke.User> users = new Hashtable<String, modelPakke.User>();
 		DBConnection db = new DBConnection(p);
@@ -55,14 +55,14 @@ public class KalenderSystemDB {
 			String name = rs.getString("fornavn") + " " +rs.getString("etternavn");
 			String email = rs.getString("epost");
 			Date dateOfBirth = rs.getDate("dateOfBirth");
-			users.put(username, new modelPakke.User(name, email, dateOfBirth));
+			users.put(username, new User(name, email, dateOfBirth));
 		}
 		return users;
 	} 
 	
-	public Hashtable<String, modelPakke.User> getGroupMembers(int gruppeID) 
+	public Hashtable<String, User> getGroupMembers(int gruppeID) 
 	throws ClassNotFoundException, SQLException{
-		Hashtable<String, modelPakke.User> users = new Hashtable<String, modelPakke.User>();
+		Hashtable<String, User> users = new Hashtable<String, User>();
 		DBConnection db = new DBConnection(p);
 		String sql = "SELECT ansatt.brukernavn, ansatt.fornavn, ansatt.etternavn," +
 				", epost, dateOfBirth FROM gruppe, ansatt, medlemav WHERE " +
@@ -76,15 +76,14 @@ public class KalenderSystemDB {
 			String name = rs.getString("fornavn") + " " +rs.getString("etternavn");
 			String email = rs.getString("epost");
 			Date dateOfBirth = rs.getDate("dateOfBirth");
-			// add username and to constructor!!!!
-			users.put(username, new modelPakke.User(name, email, dateOfBirth));
+			users.put(username, new User(name, email, dateOfBirth));
 		}
 		return users;
 	} 
 	
-	public Hashtable<String, modelPakke.User> getUsers() 
+	public Hashtable<String, User> getUsers() 
 	throws ClassNotFoundException, SQLException{
-		Hashtable<String, modelPakke.User> users = new Hashtable<String, modelPakke.User>();
+		Hashtable<String, User> users = new Hashtable<String, User>();
 		DBConnection db = new DBConnection(p);
 		String sql = "SELECT brukernavn, fornavn, etternavn, epost, dateOfBirth FROM ansatt"; 
 		db.initialize();
@@ -95,7 +94,7 @@ public class KalenderSystemDB {
 			String name = rs.getString("fornavn") + " " +rs.getString("etternavn");
 			String email = rs.getString("epost");
 			Date dateOfBirth = rs.getDate("dateOfBirth");
-			users.put(username, new modelPakke.User(name, email, dateOfBirth));
+			users.put(username, new User(name, email, dateOfBirth));
 		}
 		rs.close();
 		db.close();
