@@ -36,7 +36,10 @@ public class calendarLogic {
 		
 			try{
 				
-					//out.writeObject(convertToXML(object));
+				Gson gson = new Gson();
+				User user = new User("sfsdf","John Doe","124124", "john@gmail.com", new Date(1992, 23, 05));
+				String json = gson.toJson(user);
+				out.writeObject(json);
 	    			out.flush();
 	    	
 	    			fromServer=(String)in.readObject();
@@ -73,8 +76,8 @@ public class calendarLogic {
 		try{
 			
     		//1. creating a socket to connect to the server
-    		serverConnection = new Socket("78.91.48.147", 7899);
-    		System.out.println("Connected to 78.91.48.147  in port 7899");
+    		serverConnection = new Socket("78.91.16.62", 7899);
+    		System.out.println("Connected to 78.91.16.62  in port 7899");
     		//2. get Input and Output streams
     		out = new ObjectOutputStream(serverConnection.getOutputStream());
     		in = new ObjectInputStream(serverConnection.getInputStream());
@@ -96,13 +99,8 @@ public class calendarLogic {
 		
 		try{			
 			try{	
-				Gson gson = new Gson();
-				User user = new User("John Doe","124124", "john@gmail.com", new Date(1992, 23, 05));
-				String json = gson.toJson(user);
-					out.writeObject(json);
-					System.out.println("gsgs");
-	    			out.flush();
-	    	
+					out.writeObject(r);
+	    			out.reset();
 	    			fromServer=(String)in.readObject();
 	    			return(fromServer);
 	    		
@@ -125,3 +123,4 @@ public class calendarLogic {
 	}
 
 }
+
