@@ -310,16 +310,17 @@ public class KalenderSystemDB {
 		db.close();
 	}
 	
-	public void setAlarm(String brukernavn, int avtaleID, Time tid, Date dato) throws ClassNotFoundException, SQLException{
+	public void setAlarm(String brukernavn, int avtaleID, Time tid, Date dato, String beskjed) throws ClassNotFoundException, SQLException{
 		DBConnection db=new DBConnection(p);
 		db.initialize();
-		String sql = "INSERT INTO alarm(brukernavn, avtaleID, tid, dato)" +
-				"values(?, ?, ?, ?)";
+		String sql = "INSERT INTO alarm(brukernavn, avtaleID, tid, dato,beskjed)" +
+				"values(?, ?, ?, ?, ?)";
 		PreparedStatement ps = db.preparedStatement(sql);
 		ps.setString(1, brukernavn);
 		ps.setInt(2, avtaleID);
 		ps.setTime(3, tid);
 		ps.setDate(4, dato);
+		ps.setString(5, beskjed);
 		ps.executeUpdate();
 		
 		db.close();
@@ -335,7 +336,10 @@ public class KalenderSystemDB {
 		ResultSet rs = ps.executeQuery();
 		rs.beforeFirst();
 		if(rs.next()){
-			Alarm alarm = new Alarm();
+			Date dato = rs.getDate("dato");
+			Time tid = rs.getTime("tid");
+			String message = rs.getString("beskjed");
+			Alarm alarm = new Alarm(dato, tid, message, brukernavn, avtaleID);
 			return alarm;
 		}
 		return null;

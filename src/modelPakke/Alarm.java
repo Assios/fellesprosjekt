@@ -1,40 +1,49 @@
 package modelPakke;
 
-import java.util.Date;
+import java.sql.*;
 
 
 public class Alarm {
 
 
-	private Date activationTime;
+	private Date activationDate;
+	private	Time activationTime;
 	private String alarmMessage;
-	private String alarmTitle;
+	private String brukernavn;
+	private int avtaleID;
 
 
 	/*
 	 * Default constructor
 	 */
 	public Alarm(){
+		activationDate = null;
 		activationTime = null;
 		alarmMessage = "";
-		alarmTitle = "";
+		brukernavn = "";
 	}
 
 
 	/*
 	 * Spesific constructor
 	 */
-	public Alarm(Date activationTime, String alarmMessage, String alarmTitle){
+	public Alarm(Date activationDate, Time activationTime, String alarmMessage, String brukernavn, int avtaleID){
+		this.activationDate = activationDate;
 		this.activationTime = activationTime;
 		this.alarmMessage = alarmMessage;
-		this.alarmTitle = alarmTitle;
+		this.brukernavn = brukernavn;
+		this.avtaleID = avtaleID;
 	}
 /*
  * Getters and setters
  */
-	public Date getActivationTime() {
+	public Date getActivationDate() {
+		return activationDate;
+	}
+	public Time getActivationTime() {
 		return activationTime;
 	}
+
 
 
 	@SuppressWarnings("deprecation")
@@ -57,20 +66,28 @@ public class Alarm {
 	}
 
 
-	public String getAlarmTitle() {
-		return alarmTitle;
+	public String getBrukernavn() {
+		return brukernavn;
 	}
+	public int getAvtaleID() {
+		return avtaleID;
+	}
+	
 
 
-	public void setAlarmTitle(String alarmTitle) {
-		this.alarmTitle = alarmTitle;
+	public void setBrukernavn(String brukernavn) {
+		this.brukernavn = brukernavn;
 	}
+	public void setAvtaleID(int avtaleID) {
+		this.avtaleID = avtaleID;
+	}
+	
 /*
  * toString
  */
 	public String toString(){
 		String s = "";
-		s = "Title: " + alarmTitle + "\nMessage: " + alarmMessage + "\nActivation time: " + Integer.toString(activationTime.getHours()) + ":" + Integer.toString(activationTime.getMinutes());
+		s = "Title: " + avtaleID + " " + brukernavn + "\nMessage: " + alarmMessage + "\nActivation time: " + Integer.toString(activationTime.getHours()) + ":" + Integer.toString(activationTime.getMinutes());
 		return s;
 	}
 
