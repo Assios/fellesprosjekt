@@ -241,7 +241,7 @@ public class KalenderSystemDB {
 
 	public void deleteCalenderEvent(int avtaleID) throws ClassNotFoundException, SQLException{
 		DBConnection db=new DBConnection(p);
-		String sql = "UPDATE avtale SET isActiv = 0 WHERE avtaleID =" + avtaleID;
+		String sql = "UPDATE avtale SET isActive = 0 WHERE avtaleID =" + avtaleID;
 		db.initialize();
 		db.makeSingleUpdate(sql);
 		String updateInvite = "UPDATE inviterte SET erMed='slettet' WHERE avtaleID =" + avtaleID;
@@ -347,16 +347,14 @@ public class KalenderSystemDB {
 					inviterte.add("oleo");
 					inviterte.add("jensj");
 					inviterte.add("Stiner");
-					int avtaleID = t.createCalenderEvent("Donald_Duck", "meeting", new Time(10, 0, 0), new Time(14, 0, 0), new Date(2013, 5, 16), inviterte);
+					int avtaleID = t.createCalenderEvent( "meeting","Donald_Duck", new Time(10, 0, 0), new Time(14, 0, 0), new Date(2013-1900, 5, 16), inviterte);
 					t.addDescription(avtaleID,"add description for testing");
 					t.addPlace(avtaleID, "rom 120");
 					t.answerInvite("Oleo", avtaleID, true);
 				// Han vil endre tid
-					t.editCalenderEvent(avtaleID, new Time(15, 0, 0), new Time(18, 0, 0), new Date(2013, 5, 17));
+					t.editCalenderEvent(avtaleID, new Time(17, 0, 0), new Time(22, 0, 0), new Date(2013-1900, 5, 17));
 					t.answerInvite("jensj", avtaleID, true);
 					t.deleteCalenderEvent(1);
-			
-			
 			
 		} 
 		catch (FileNotFoundException e) {
