@@ -5,6 +5,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -25,7 +26,8 @@ import modelPakke.*;
 
 
 public class MainscreenPanel extends JFrame{
-	private JTable kalender;
+	//private JTable kalender;
+	private calendarExample.Cal kalender;
 	private calendarLogic cL;
 	public MainscreenPanel(calendarLogic cl) {
 		cL=cl;
@@ -75,28 +77,8 @@ public class MainscreenPanel extends JFrame{
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
 
-		kalender = new JTable();
-		kalender.setForeground(Color.BLACK);
-		kalender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		kalender.setRowSelectionAllowed(false);
-		kalender.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		kalender.setToolTipText("");
-		kalender.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Time", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "L\u00F8rdag", "S\u00F8ndag"},
-				{"09-10", null, null, null, null, null, null, null},
-				{"10-11", null, null, null, null, null, null, null},
-				{"11-12", null, null, null, null, null, null, null},
-				{"12-13", null, null, null, null, null, null, null},
-				{"13-14", null, null, null, null, null, null, null},
-				{"14-15", null, null, null, null, null, null, null},
-				{"15-16", null, null, null, null, null, null, null},
-				{"16-17", null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Time", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "L\u00F8rdag", "S\u00F8ndag"
-			}
-		));
+		kalender = new calendarExample.Cal();
+		
 		kalender.setBorder(new LineBorder(new Color(0, 0, 0)));
 
 

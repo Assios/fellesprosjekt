@@ -40,7 +40,7 @@ public class Cal extends JPanel {
 
    /** Construct a Cal, starting with today.
     */
-   Cal() {
+   public Cal() {
       super();
       setYYMMDD(calendar.get(Calendar.YEAR),
          calendar.get(Calendar.MONTH),
