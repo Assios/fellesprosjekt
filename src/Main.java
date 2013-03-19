@@ -10,7 +10,7 @@ public class Main {
 	
 	public static void main(String []args){
 		GUI.MainscreenPanel mp = new GUI.MainscreenPanel();
-		//loginPanel lp = new loginPanel();
+		loginPanel lp = new loginPanel();
 		mp.setVisible(true);
 	}
 
