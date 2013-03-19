@@ -132,6 +132,7 @@ public class Cal extends JPanel {
             if (!num.equals("")) {
                // set the current day highlighted
                setDayActive(Integer.parseInt(num));
+               System.out.println(getActiveDate().toString());
                // When this becomes a Bean, you can
                // fire some kind of DateChanged event here.
                // Also, build a similar daySetter for day-of-week btns.
