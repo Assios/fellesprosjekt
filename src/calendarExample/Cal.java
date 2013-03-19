@@ -132,6 +132,7 @@ public class Cal extends JPanel {
             if (!num.equals("")) {
                // set the current day highlighted
                setDayActive(Integer.parseInt(num));
+               System.out.println(getActiveDate().toString());
                // When this becomes a Bean, you can
                // fire some kind of DateChanged event here.
                // Also, build a similar daySetter for day-of-week btns.
@@ -252,18 +253,22 @@ public class Cal extends JPanel {
    }
 
    /** For testing, a main program */
-   public static void main(String[] av) {
+  /** public static void main(String[] av) {
       JFrame f = new JFrame("Cal");
       Container c = f.getContentPane();
       c.setLayout(new FlowLayout());
 
       // for this test driver, hardcode 1995/02/10.
-      c.add(new Cal(1995, 2-1, 10));
+      c.add(new Cal(2013, 3-1, 19));
 
       // and beside it, the current month.
-      c.add(new Cal());
+     // c.add(new Cal());
 
       f.pack();
       f.setVisible(true);
+      System.out.println();
+   }**/
+   public Date getActiveDate(){
+	   return new Date(thisYear, thisMonth, activeDay);
    }
 }
