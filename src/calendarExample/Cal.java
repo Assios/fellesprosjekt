@@ -52,7 +52,7 @@ public class Cal extends JPanel {
    /** Construct a Cal, given the leading days and the total days
     * @exception   IllegalArgumentException   If year out of range
     */
-   Cal(int year, int month, int today) {
+   public Cal(int year, int month, int today) {
       super();
       setYYMMDD(year, month, today);
       buildGUI();

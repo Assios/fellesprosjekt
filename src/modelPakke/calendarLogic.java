@@ -11,7 +11,13 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Date;
+import java.sql.Time;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.JComboBox;
+import javax.swing.ListModel;
 
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
@@ -116,6 +122,49 @@ public class calendarLogic {
 		
 	}
 	
+	public void createCalendarEvent(String avtaleNavn, String leader, Time start, Time slutt, Date dato, Vector<String> invited){
+		String oE="opprettEvent";
+		
+		Request r=new Request(oE,avtaleNavn,leader,start,slutt,dato,invited);
+		try{			
+			try{	
+					out.writeObject(r);
+					System.out.println("ddfgdf");
+	    			out.flush();
+	    			
+	    		
+	    	}
+	    	catch(IOException ioException){
+	    		
+	    	}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		
+		}
+	}
+	
+	public JComboBox addDatesToJComboBox(JComboBox cb){
+		int day,hour;
+		Date dato;
+		for(int i=0;i<12;i++){
+			for(int j=0;j<30;j++){
+				dato=new Date(2013,i,j);
+				cb.addItem(dato);
+			}
+		}
+		return cb;
+	}
+	
+	public JComboBox addHoursToJComboBox(JComboBox cb){
+		int hour=0;
+		for(int i=0;i<24;i++){
+			Time t=new Time(hour,00,00);
+			cb.addItem(t);
+			hour++;
+		}
+		return cb;
+	}
 	
 	public String convertToJson(Object o){
 		//return(xs.toJson(o));
@@ -123,3 +172,4 @@ public class calendarLogic {
 	}
 
 }
+

@@ -41,7 +41,7 @@ public class KalenderSystemDB {
 		return true;
 	}
 
-	public Hashtable<String, modelPakke.User> getInvited(int avtaleID) 
+	public Hashtable<String, User> getInvited(int avtaleID) 
 	throws ClassNotFoundException, SQLException{
 		Hashtable<String, modelPakke.User> users = new Hashtable<String, modelPakke.User>();
 		DBConnection db = new DBConnection(p);
@@ -63,9 +63,9 @@ public class KalenderSystemDB {
 		return users;
 	} 
 	
-	public Hashtable<String, modelPakke.User> getGroupMembers(int gruppeID) 
+	public Hashtable<String, User> getGroupMembers(int gruppeID) 
 	throws ClassNotFoundException, SQLException{
-		Hashtable<String, modelPakke.User> users = new Hashtable<String, modelPakke.User>();
+		Hashtable<String, User> users = new Hashtable<String, User>();
 		DBConnection db = new DBConnection(p);
 		String sql = "SELECT ansatt.brukernavn, ansatt.fornavn, ansatt.etternavn," +
 				", epost, dateOfBirth FROM gruppe, ansatt, medlemav WHERE " +
@@ -88,9 +88,9 @@ public class KalenderSystemDB {
 		return users;
 	} 
 	
-	public Hashtable<String, modelPakke.User> getUsers() 
+	public Hashtable<String, User> getUsers() 
 	throws ClassNotFoundException, SQLException{
-		Hashtable<String, modelPakke.User> users = new Hashtable<String, modelPakke.User>();
+		Hashtable<String, User> users = new Hashtable<String, User>();
 		DBConnection db = new DBConnection(p);
 		String sql = "SELECT brukernavn, fornavn, etternavn, epost, dateOfBirth FROM ansatt"; 
 		db.initialize();
@@ -104,7 +104,6 @@ public class KalenderSystemDB {
 			Date dateOfbirth = rs.getDate("dateOfbirth");
 			
 			users.put(username, new modelPakke.User(username, fornavn, etternavn, email, dateOfbirth));
-
 		}
 		rs.close();
 		db.close();

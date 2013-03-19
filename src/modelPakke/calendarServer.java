@@ -4,7 +4,9 @@ import java.io.*;
 import java.net.*;
 import java.security.*;
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.Vector;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Properties;
 
 import DBconnection.*;
@@ -80,23 +82,24 @@ class doComms implements Runnable {
     	  out.flush();
     	  in = new ObjectInputStream(server.getInputStream());
     	  String disconnect="dc";
-    	  		/*
-        		o=in.readObject();
-        		System.out.println("Recieved "+o);
-        		out.writeObject("recieved");
-    		  	*/
+    	  	do{
     		  	r=(Request)in.readObject();
         		System.out.println("Waiting for request");
        		 	System.out.println("recieved :"+r.getType()+" "+r.getPassword()+" from "+ server.getInetAddress());
        		 	switch(r.getType()){
        		 	case "login":out.writeObject(returnLoginResult(r.getUserName(),r.getPassword()));
+       		 	System.out.println("hh");
        		 				break;
-       		 				}
+       		 	case "opprettEvent": System.out.println("hit");
+       		 		kDb.createCalenderEvent(r.getAvtaleNavn(), r.getLeader(),r.getStartTime(), r.getEndTime(), r.getDate(), r.getInvited());
+       		 	
+       		 	break;
+       		 	}
        		 	
        		 	
        		 	
        		 	out.flush();
-        	
+    	  	}while(in!=null);
         
       } catch(Exception e){
     	  System.out.println("IOException on socket listen: " + e);
@@ -147,4 +150,3 @@ class doComms implements Runnable {
     }
     
 }
-

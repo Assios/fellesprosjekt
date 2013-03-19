@@ -1,5 +1,6 @@
 package GUI;
 
+
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -16,81 +17,116 @@ import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Vector;
+import java.sql.Time;
+import java.sql.Date;
+import modelPakke.*;
+
 
 public class createNewMeetingPanel extends JFrame{
 	private JTextField meetingNameField;
 	private JTextField locationField;
-	public createNewMeetingPanel() {
-		setTitle("New Meeting");
+	private calendarLogic cL;
+	private Vector<String> invited= new Vector<String>();
+	JButton btnDelete;
+	JLabel lblUser;
+	JLabel userVar;
+	JLabel lblDate;
+	JComboBox dateCombo;
+	JComboBox startCombo;
+	JComboBox endCombo;
+	public createNewMeetingPanel(calendarLogic cl) {
+		cL=cl;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(500, 450));
-		
+		setLocation(new Point(800, 400));
+
+
 		JLabel lblMeetingName = new JLabel("Meeting name:");
-		
+
+
 		meetingNameField = new JTextField();
 		meetingNameField.setColumns(10);
-		
+
+
 		JLabel lblMemberList = new JLabel("Member list:");
-		
+
+
 		JList memberList = new JList();
 		memberList.setModel(new AbstractListModel() {
-			String[] values = new String[] {};
 			public int getSize() {
-				return values.length;
+				return invited.size();
 			}
 			public Object getElementAt(int index) {
-				return values[index];
+				return invited.get(index);
 			}
 		});
-		
+
+
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new GUI.addMembersToMeeting().setVisible(true);
 			}
 		});
-		
-		JButton btnDelete = new JButton("Delete");
-		
-		JLabel lblUser = new JLabel("User:");
-		
-		JLabel userVar = new JLabel("New label");
+
+
+		btnDelete = new JButton("Delete");
+
+
+		lblUser = new JLabel("User:");
+
+
+		userVar = new JLabel("New label");
 		userVar.setEnabled(false);
-		
-		JLabel lblDate = new JLabel("Date:");
-		
-		JComboBox dateCombo = new JComboBox();
-		
+
+
+		lblDate = new JLabel("Date:");
+
+
+		dateCombo = new JComboBox();
+		cL.addDatesToJComboBox(dateCombo);
+
 		JLabel lblStart = new JLabel("Start:");
-		
+
+
 		JLabel lblEnd = new JLabel("End:");
-		
-		JComboBox startCombo = new JComboBox();
-		
-		JComboBox endCombo = new JComboBox();
-		
+
+
+		startCombo = new JComboBox();
+		cL.addHoursToJComboBox(startCombo);
+
+		endCombo = new JComboBox();
+		cL.addHoursToJComboBox(endCombo);
+
 		JScrollPane scrollPane = new JScrollPane();
-		
+
+
 		JLabel lblDescription = new JLabel("Description:");
-		
+
+
 		JLabel lblRoom = new JLabel("Room:");
-		
+
+
 		JComboBox roomCombo = new JComboBox();
-		
+
+
 		JLabel lblLocation = new JLabel("Location:");
-		
+
+
 		locationField = new JTextField();
 		locationField.setColumns(10);
-		
+
+
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//check if enough information is given, if it is a new meeting object should be made, and added to the users callendarlist
-				//with constructor Meeting(Date startTime, Date endTime, String title, String description, Room room, String location, ArrayList<User> members)
+			public void actionPerformed(ActionEvent arg0) {
+				cL.createCalendarEvent(meetingNameField.getText(), "", (Time)startCombo.getSelectedItem(), (Time)endCombo.getSelectedItem(),(Date)dateCombo.getSelectedItem(), invited);
 				dispose();
 			}
 		});
-		
+
+
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -204,7 +240,8 @@ public class createNewMeetingPanel extends JFrame{
 						.addComponent(btnSave))
 					.addGap(113))
 		);
-		
+
+
 		JTextArea descriptionArea = new JTextArea();
 		descriptionArea.setLineWrap(true);
 		scrollPane.setViewportView(descriptionArea);
