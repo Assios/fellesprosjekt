@@ -21,6 +21,11 @@ public class Request implements java.io.Serializable {
 		
 	}
 	
+	public Request(String t,String uN){
+		type=t;
+		this.userName=uN;
+	}
+	
 	public Request(String t,String avtaleNavn, String leader, Time start, Time slutt, Date dato, Vector<String> invited){
 		this.type=t;
 		this.avtaleNavn=avtaleNavn;
@@ -30,6 +35,7 @@ public class Request implements java.io.Serializable {
 		this.dato=dato;
 		this.invited=invited;
 	}
+	
 	
 	public Vector<String> getInvited(){
 		return invited;
