@@ -34,7 +34,14 @@ public class loginPanel extends JFrame{
 		JButton btnLogIn = new JButton("Log in");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new GUI.MainscreenPanel().setVisible(true);
+				String result=cL.requestLogin(usernameField.getText(),String.valueOf(passwordField.getPassword()));
+				if(result.equals("valid"))
+					new GUI.MainscreenPanel().setVisible(true);
+				else{
+					JOptionPane.showMessageDialog(null,result);
+					usernameField.setText("");
+					passwordField.setText("");
+				}
 				dispose();
 			}
 		});
