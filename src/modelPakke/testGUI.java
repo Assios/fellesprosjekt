@@ -1,13 +1,16 @@
 package modelPakke;
 
+
+
+
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
 
 import javax.swing.*;
-
-import com.google.gson.Gson;
 
 
 public class testGUI extends JPanel{
@@ -17,7 +20,7 @@ public class testGUI extends JPanel{
 	JLabel sL;
 	JTextArea fromServer;
 	calendarLogic cL=new calendarLogic();
-	String userJson;
+	User u;
 	Meeting m;
 	Room r;
 
@@ -34,12 +37,7 @@ public class testGUI extends JPanel{
 		add(disconnectButton);
 		add(sL);
 		add(fromServer);
-		//JSON converter
-		Gson gson = new Gson();
-		User user = new User("John Doe", "john@gmail.com", new Date(1992, 23, 05));
-		
-		userJson = gson.toJson(user);
-		
+		u=new User("sdf","jimmy","hdfh", "hadhagds",new Date(22,22,22));
 		r=new Room(3, "rom");
 		connectButton.addActionListener(new connectButtonAction());
 		disconnectButton.addActionListener(new disconnectButtonAction());
@@ -53,7 +51,7 @@ public class testGUI extends JPanel{
 
 	class sendButtonAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {        
-				cL.send(userJson);
+            	cL.send(u);
         }
     }
 
@@ -68,7 +66,7 @@ public class testGUI extends JPanel{
 	class connectButtonAction implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try{
-            	cL.connect(userJson);
+            	cL.connect();
             }
             catch(Exception e1){
             	System.out.println("no connection");
@@ -81,6 +79,6 @@ public class testGUI extends JPanel{
 	        frame.pack(); 
 	        frame.setVisible(true);  
 
+
 	 }
 }
-
