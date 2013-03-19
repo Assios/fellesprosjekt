@@ -17,13 +17,12 @@ public class Meeting {
 	private Alarm alarm;
 	private Room room;
 	private Integer ID;
+	private boolean isActive;
 	
 	//constructor
 	public Meeting(Time startTime, Time endTime, String title, String description, Room room, String location, ArrayList<User> members, Date date, Integer ID){
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.startTime.setYear(startTime.getYear()-1900);
-		this.endTime.setYear(endTime.getYear()-1900);
 		this.title = title;
 		this.description = description;
 		this.room = room;
@@ -31,8 +30,18 @@ public class Meeting {
 		this.members = members;
 		this.date = date;
 		this.ID = ID;
+		this.isActive = true;
 	}
-	
+	public Meeting(int ID, DBconnection.TimeInterval tid, String title, String description, String location, boolean isActive){
+		this.startTime = tid.getSlutt();
+		this.endTime = tid.getStart();
+		this.title = title;
+		this.description = description;
+		this.location = location;
+		this.date = tid.getDato();
+		this.ID = ID;
+		this.isActive = isActive;
+	}
 
 	public Meeting(){
 		this.startTime = null;
@@ -42,6 +51,7 @@ public class Meeting {
 		this.room = null;
 		this.location = null;
 		this.members = null;
+		this.isActive = true;
 	}
 	
 	/* TIDEN SETTES PÅ DENNE FORMEN:
@@ -150,6 +160,10 @@ public class Meeting {
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+	
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	private boolean compareMembers(Meeting meeting){
