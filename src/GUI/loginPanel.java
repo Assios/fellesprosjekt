@@ -1,8 +1,10 @@
 package GUI;
 
+
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -12,34 +14,51 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.Point;
+import modelPakke.*;
+
 
 public class loginPanel extends JFrame{
 	private JPasswordField passwordField;
 	private JTextField usernameField;
+	private calendarLogic cL;
 	public loginPanel() {
 		setTitle("Login");
 		setLocation(new Point(800, 400));
 		setMinimumSize(new Dimension(200, 200));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
+
 		passwordField = new JPasswordField();
-		
+
+		cL=new calendarLogic();
 		usernameField = new JTextField();
 		usernameField.setColumns(10);
-		
+
+
 		JLabel lblUsername = new JLabel("Username:");
-		
+
+
 		JLabel lblPassword = new JLabel("Password:");
-		
+
+
 		JButton btnLogIn = new JButton("Log in");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new GUI.MainscreenPanel().setVisible(true);
+				String result=cL.requestLogin(usernameField.getText(),String.valueOf(passwordField.getPassword()));
+				if(result.equals("valid"))
+					new GUI.MainscreenPanel().setVisible(true);
+				else{
+					JOptionPane.showMessageDialog(null,result);
+					usernameField.setText("");
+					passwordField.setText("");
+				}
 				dispose();
 			}
 		});
-		
-		
+
+
+
+
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

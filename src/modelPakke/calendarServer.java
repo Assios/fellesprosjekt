@@ -3,7 +3,11 @@ package modelPakke;
 import java.io.*;
 import java.net.*;
 import java.security.*;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.Properties;
+
+import DBconnection.*;
 
 /**
  * Title:        Sample Server
@@ -46,7 +50,11 @@ public class calendarServer {
 class doComms implements Runnable {
     private Socket server;
     private String line,input;
-    User testUser=new User("blackJack23","Jack", "jack@gmail.com","123456",new Date(22,22,22));
+    private Properties prop=new Properties();
+   
+    KalenderSystemDB kDb;
+
+    User testUser;
 
     doComms(Socket server) {
       this.server=server;
@@ -58,17 +66,25 @@ class doComms implements Runnable {
       ObjectInputStream in;
       
      try{
+    	
+
         // Get input from the client
-    	  Object o;
+    	 prop.setProperty("url","jdbc:mysql://mysql.stud.ntnu.no/tonyc_kalendersystem");
+    	 prop.setProperty("jdbcDriver","com.mysql.jdbc.Driver");
+    	 prop.setProperty("user","tonyc_test");
+    	 prop.setProperty("password","password");
+    	 kDb=new KalenderSystemDB(prop);
+    	 Object o;
     	  Request r;
     	  out = new ObjectOutputStream(server.getOutputStream());
     	  out.flush();
     	  in = new ObjectInputStream(server.getInputStream());
     	  String disconnect="dc";
-    	  do{
+    	  		/*
         		o=in.readObject();
         		System.out.println("Recieved "+o);
-    		  	/*
+        		out.writeObject("recieved");
+    		  	*/
     		  	r=(Request)in.readObject();
         		System.out.println("Waiting for request");
        		 	System.out.println("recieved :"+r.getType()+" "+r.getPassword()+" from "+ server.getInetAddress());
@@ -77,11 +93,9 @@ class doComms implements Runnable {
        		 				break;
        		 				}
        		 	
-       		 	*/	
        		 	
        		 	
        		 	out.flush();
-    	  }while(in!=null);
         	
         
       } catch(Exception e){
@@ -113,11 +127,24 @@ class doComms implements Runnable {
     }
     
     public String returnLoginResult(String userName, String password){
-    	if(userName.equals(getUsername()) && password.equals(getPassword()))
-    		return "valid";
-    	
-    	else
-    		return ("Access denied");	
+    	try {
+			if(kDb.loginCheck(userName, password))
+				return "valid";
+			
+			else
+				return ("Access denied");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ("Access denied");
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ("Access denied");
+
+		}	
     }
     
 }
+
