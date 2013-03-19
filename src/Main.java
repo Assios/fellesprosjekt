@@ -9,8 +9,9 @@ import GUI.loginPanel;
 public class Main {
 	
 	public static void main(String []args){
-		loginPanel lp = new loginPanel();
-		lp.setVisible(true);
+		GUI.MainscreenPanel mp = new GUI.MainscreenPanel();
+		//loginPanel lp = new loginPanel();
+		mp.setVisible(true);
 	}
 
 }

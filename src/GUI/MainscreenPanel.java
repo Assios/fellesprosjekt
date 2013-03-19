@@ -4,6 +4,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -18,11 +19,15 @@ import javax.swing.ListSelectionModel;
 import java.awt.Cursor;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import calendarExample.Cal;
+
 import java.awt.Point;
 import java.awt.Dimension;
 
 public class MainscreenPanel extends JFrame{
-	private JTable kalender;
+	//private JTable kalender;
+	private JPanel kalender;
 	public MainscreenPanel() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 300));
@@ -62,29 +67,9 @@ public class MainscreenPanel extends JFrame{
 		});
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
-		kalender = new JTable();
-		kalender.setForeground(Color.BLACK);
-		kalender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		kalender.setRowSelectionAllowed(false);
-		kalender.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		kalender.setToolTipText("");
-		kalender.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Time", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "L\u00F8rdag", "S\u00F8ndag"},
-				{"09-10", null, null, null, null, null, null, null},
-				{"10-11", null, null, null, null, null, null, null},
-				{"11-12", null, null, null, null, null, null, null},
-				{"12-13", null, null, null, null, null, null, null},
-				{"13-14", null, null, null, null, null, null, null},
-				{"14-15", null, null, null, null, null, null, null},
-				{"15-16", null, null, null, null, null, null, null},
-				{"16-17", null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Time", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "L\u00F8rdag", "S\u00F8ndag"
-			}
-		));
-		kalender.setBorder(new LineBorder(new Color(0, 0, 0)));
+		kalender = new JPanel();
+		kalender.add(new Cal(2013, 3-1, 19));
+		
 		
 		JButton Left = new JButton("<<");
 		
