@@ -124,7 +124,7 @@ public class KalenderSystemDB {
 		return events;
 	}
 	
- 	public Events getEvent(int avtaleID) throws ClassNotFoundException, SQLException{
+ 	public Meeting getEvent(int avtaleID) throws ClassNotFoundException, SQLException{
 		DBConnection db = new DBConnection(p);
 		String sql = "SELECT * FROM avtale WHERE avtaleID =" + avtaleID;
 		db.initialize();
@@ -142,8 +142,8 @@ public class KalenderSystemDB {
 		boolean isActive = rs.getBoolean("isActive");
 		
 		TimeInterval tid = new TimeInterval(start, slutt, dato);
+		Meeting event = new Meeting(avtaleID, tid, avtaleNavn, beskrivelse, sted, isActive);
 		
-		Events event = new Events(avtaleID, avtaleNavn, leader, tid, isActive, beskrivelse, sted);
 	
 		rs.close();
 		db.close();
@@ -234,10 +234,10 @@ public class KalenderSystemDB {
 	public void addRoomToEvent(int avtaleID, int romID) throws ClassNotFoundException, SQLException{
 		DBConnection db=new DBConnection(p);
 		
-		Events event = getEvent(avtaleID);
-		Time start = event.getTid().getStart();
-		Time slutt = event.getTid().getSlutt();
-		Date dato = event.getTid().getDato();
+		Meeting event = getEvent(avtaleID);
+		Time start = event.getStartTime();
+		Time slutt = event.getEndTime();
+		Date dato = event.getDate();
 		
 		String sql = "UPDATE reservasjoner SET avtaleID =" + avtaleID +
 				" WHERE romID =" + romID + " AND starttid = '" + start +"'" +
