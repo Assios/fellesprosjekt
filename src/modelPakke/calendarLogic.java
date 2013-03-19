@@ -37,7 +37,7 @@ public class calendarLogic {
 			try{
 				
 				Gson gson = new Gson();
-				User user = new User("sfsdf","John Doe","124124", "john@gmail.com", new Date(1992, 23, 05));
+				User user = new User("Brukernavn","Fornavn","Etternavn", "Epost", new Date(22,22,22));
 				String json = gson.toJson(user);
 				out.writeObject(json);
 	    			out.flush();

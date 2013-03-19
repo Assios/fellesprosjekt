@@ -37,7 +37,7 @@ public class testGUI extends JPanel{
 		add(disconnectButton);
 		add(sL);
 		add(fromServer);
-		u=new User("sdf","jimmy","hdfh", "hadhagds",new Date(22,22,22));
+		u=new User("Brukernavn","Fornavn","Etternavn", "Epost", new Date(22,22,22));
 		r=new Room(3, "rom");
 		connectButton.addActionListener(new connectButtonAction());
 		disconnectButton.addActionListener(new disconnectButtonAction());

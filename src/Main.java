@@ -12,5 +12,5 @@ public class Main {
 		loginPanel lp = new loginPanel();
 		lp.setVisible(true);
 	}
-
+	
 }

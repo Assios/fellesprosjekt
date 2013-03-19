@@ -15,6 +15,7 @@ import modelPakke.*;
 
 public class KalenderSystemDB {
 	private Properties p;
+	private String testString;
 	
 	public KalenderSystemDB(Properties propertie){
 		this.p = propertie;
@@ -52,10 +53,12 @@ public class KalenderSystemDB {
 		rs.beforeFirst();
 		while(rs.next()){
 			String username = rs.getString("brukernavn");
-			String name = rs.getString("fornavn") + " " +rs.getString("etternavn");
+			String fornavn = rs.getString("fornavn");
+			String etternavn = rs.getString("etternavn");
 			String email = rs.getString("epost");
-			Date dateOfBirth = rs.getDate("dateOfBirth");
-			users.put(username, new modelPakke.User(name, email, dateOfBirth));
+			Date dateOfbirth = rs.getDate("dateOfbirth");
+			
+			users.put(username, new modelPakke.User(username, fornavn, etternavn, email, dateOfbirth));
 		}
 		return users;
 	} 
@@ -71,13 +74,16 @@ public class KalenderSystemDB {
 		db.initialize();
 		ResultSet rs=db.makeSingleQuery(sql);
 		rs.beforeFirst();
+		
+		
 		while(rs.next()){
 			String username = rs.getString("brukernavn");
-			String name = rs.getString("fornavn") + " " +rs.getString("etternavn");
+			String fornavn = rs.getString("fornavn");
+			String etternavn = rs.getString("etternavn");
 			String email = rs.getString("epost");
-			Date dateOfBirth = rs.getDate("dateOfBirth");
-			// add username and to constructor!!!!
-			users.put(username, new modelPakke.User(name, email, dateOfBirth));
+			Date dateOfbirth = rs.getDate("dateOfbirth");
+			
+			users.put(username, new modelPakke.User(username, fornavn, etternavn, email, dateOfbirth));
 		}
 		return users;
 	} 
@@ -92,10 +98,13 @@ public class KalenderSystemDB {
 		rs.beforeFirst();
 		while(rs.next()){
 			String username = rs.getString("brukernavn");
-			String name = rs.getString("fornavn") + " " +rs.getString("etternavn");
+			String fornavn = rs.getString("fornavn");
+			String etternavn = rs.getString("etternavn");
 			String email = rs.getString("epost");
-			Date dateOfBirth = rs.getDate("dateOfBirth");
-			users.put(username, new modelPakke.User(name, email, dateOfBirth));
+			Date dateOfbirth = rs.getDate("dateOfbirth");
+			
+			users.put(username, new modelPakke.User(username, fornavn, etternavn, email, dateOfbirth));
+
 		}
 		rs.close();
 		db.close();
