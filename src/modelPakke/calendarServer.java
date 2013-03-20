@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.*;
 import java.security.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Vector;
 import java.sql.Date;
 import java.sql.Time;
@@ -53,7 +55,8 @@ class doComms implements Runnable {
     private Socket server;
     private String line,input;
     private Properties prop=new Properties();
-   
+   Vector<Integer> eventIndices;
+   ArrayList<Events> events;
     KalenderSystemDB kDb;
 
     User testUser;
@@ -79,7 +82,6 @@ class doComms implements Runnable {
     	 Object o;
     	  Request r;
     	  out = new ObjectOutputStream(server.getOutputStream());
-    	  out.flush();
     	  in = new ObjectInputStream(server.getInputStream());
     	  String disconnect="dc";
     	  	do{
@@ -91,9 +93,20 @@ class doComms implements Runnable {
        		 	System.out.println("hh");
        		 				break;
        		 	case "opprettEvent": System.out.println("hit");
-       		 		kDb.createCalenderEvent(r.getAvtaleNavn(), r.getLeader(),r.getStartTime(), r.getEndTime(), r.getDate(), r.getInvited());
-       		 	
+       		 		int id;
+       		 		id=kDb.createCalenderEvent(r.getAvtaleNavn(), r.getLeader(),r.getStartTime(), r.getEndTime(), r.getDate(), r.getInvited());
+       		 		
+       		 		kDb.addDescription(id, r.getDescription());
+       		 		System.out.println("Hittttt");
        		 	break;
+       		 	case "hentEvents": eventIndices=kDb.getEvents(r.getUserName());
+       		
+       		 				Iterator i = eventIndices.iterator();
+       		 				
+       		 				while (i.hasNext()) {
+       		 					events.add(kDb.getEvent(new Integer(i.next().toString())));
+       		 				}
+       		 				out.writeObject(events);
        		 	}
        		 	
        		 	
@@ -150,3 +163,4 @@ class doComms implements Runnable {
     }
     
 }
+

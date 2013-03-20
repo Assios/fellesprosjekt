@@ -15,6 +15,7 @@ import java.sql.Time;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Vector;
+import DBconnection.Events;
 
 import javax.swing.JComboBox;
 import javax.swing.ListModel;
@@ -30,7 +31,7 @@ public class calendarLogic {
     ObjectInputStream in;
     String fromServer;
     String disconnect="dc";
-
+    ArrayList<Meeting> meetings;
 
 	
 	public calendarLogic() {
@@ -43,7 +44,7 @@ public class calendarLogic {
 			try{
 				
 				Gson gson = new Gson();
-				User user = new User("Brukernavn","Fornavn","Etternavn", "Epost", new Date(22,22,22));
+				User user = new User("sfsdf","John Doe","124124", "john@gmail.com", new Date(1992, 23, 05));
 				String json = gson.toJson(user);
 				out.writeObject(json);
 	    			out.flush();
@@ -81,9 +82,13 @@ public class calendarLogic {
 	public void connect() {
 		try{
 			
+<<<<<<< HEAD
     		//1. creating a socket to connect to the server
-    		serverConnection = new Socket("78.91.45.87", 7899);
-    		System.out.println("Connected to  78.91.48.209  in port 7899");
+=======
+    		//1. creating a socket to connect to the server78.91.48.59
+>>>>>>> 173a0e52022ead4a8a873ee616f6c8caa7973d94
+    		serverConnection = new Socket("78.91.16.62", 7899);
+    		System.out.println("Connected to  78.91.16.62  in port 7899");
     		//2. get Input and Output streams
     		out = new ObjectOutputStream(serverConnection.getOutputStream());
     		in = new ObjectInputStream(serverConnection.getInputStream());
@@ -106,7 +111,6 @@ public class calendarLogic {
 		try{			
 			try{	
 					out.writeObject(r);
-	    			out.reset();
 	    			fromServer=(String)in.readObject();
 	    			return(fromServer);
 	    		
@@ -122,10 +126,10 @@ public class calendarLogic {
 		
 	}
 	
-	public void createCalendarEvent(String avtaleNavn, String leader, Time start, Time slutt, Date dato, Vector<String> invited){
+	public void createCalendarEvent(String avtaleNavn, String leader, Time start, Time slutt, Date dato, Vector<String> invited, String description){
 		String oE="opprettEvent";
 		
-		Request r=new Request(oE,avtaleNavn,leader,start,slutt,dato,invited);
+		Request r=new Request(oE,avtaleNavn,leader,start,slutt,dato,invited,description);
 		try{			
 			try{	
 					out.writeObject(r);
@@ -142,6 +146,36 @@ public class calendarLogic {
 			// TODO: handle exception
 		
 		}
+	}
+	
+	public ArrayList<Events> getEvents(String user){
+		Request r=new Request("hentEvents",user);
+		try {
+			out.writeObject(r);
+			out.flush();
+			return (ArrayList)in.readObject();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("no arraylist could be retrieved");
+		return null;
+	}
+	
+	public void updateMeetings(String user){
+		ArrayList<Events> events=getEvents(user);
+		
+		for(int i=0;i<events.size();i++){
+			Meeting m=new Meeting(events.get(i).getAvtaleID(),events.get(i).getTid(),events.get(i).getAvtaleNavn(),events.get(i).getBeskrivelse(),events.get(i).getSted(),events.get(i).getIsActive());
+			meetings.add(m);
+			
+		}
+		
+		
+		
 	}
 	
 	public JComboBox addDatesToJComboBox(JComboBox cb){
