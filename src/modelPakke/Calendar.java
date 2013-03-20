@@ -26,4 +26,11 @@ public class Calendar {
 		meetings.remove(meeting);
 	}
 	
+	public boolean hasMeeting(Date day){
+		for (Meeting s : meetings){
+		    if (s.getDate().getYear() == day.getYear() && s.getDate().getMonth() == day.getMonth() && s.getDate().getDay() == day.getDay()){
+		    	return true;
+		    }
+		}return false;    	
+	}
 }
