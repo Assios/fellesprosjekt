@@ -82,8 +82,8 @@ public class calendarLogic {
 		try{
 			
     		//1. creating a socket to connect to the server
-    		serverConnection = new Socket("78.91.48.209", 7899);
-    		System.out.println("Connected to  78.91.48.209  in port 7899");
+    		serverConnection = new Socket("78.91.16.62", 7899);
+    		System.out.println("Connected to  78.91.16.62  in port 7899");
     		//2. get Input and Output streams
     		out = new ObjectOutputStream(serverConnection.getOutputStream());
     		in = new ObjectInputStream(serverConnection.getInputStream());
