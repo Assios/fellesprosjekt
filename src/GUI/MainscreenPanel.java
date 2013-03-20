@@ -36,14 +36,9 @@ public class MainscreenPanel extends JFrame{
 		setTitle("Mainframe");
 
 
-		JLabel Month = new JLabel("Month");
-		Month.setFont(new Font("Tahoma", Font.BOLD, 17));
-		Month.setHorizontalAlignment(SwingConstants.CENTER);
-
-
-		JLabel Uke = new JLabel("Uke");
-		Uke.setHorizontalAlignment(SwingConstants.CENTER);
-		Uke.setFont(new Font("Tahoma", Font.BOLD, 15));
+		JLabel Kallender = new JLabel("Callendar");
+		Kallender.setFont(new Font("Tahoma", Font.BOLD, 17));
+		Kallender.setHorizontalAlignment(SwingConstants.CENTER);
 
 
 		JLabel lblUser = new JLabel("user:");
@@ -67,9 +62,10 @@ public class MainscreenPanel extends JFrame{
 		Edit.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
 
-		JButton Detailes = new JButton("Details");
+		JButton Detailes = new JButton("view");
 		Detailes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new viewDayPanel(kalender.getActiveDate(), cL).setVisible(true);
 				//new showMeetingInfoPanel(new modelPakke.Meeting().setVisible(true);
 				//maa ha tilgang til databasen
 			}
@@ -80,17 +76,6 @@ public class MainscreenPanel extends JFrame{
 		kalender = new calendarExample.Cal();
 		
 		kalender.setBorder(new LineBorder(new Color(0, 0, 0)));
-
-
-		JButton Left = new JButton("<<");
-
-
-		JButton Right = new JButton(">>");
-
-
-		JButton Delete = new JButton("Delete");
-		Delete.setEnabled(false);
-		Delete.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -102,57 +87,37 @@ public class MainscreenPanel extends JFrame{
 							.addComponent(navn, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(Delete, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(Detailes, GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
-								.addComponent(Edit, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-								.addComponent(New, GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+								.addComponent(Edit, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+								.addComponent(New, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+								.addComponent(Detailes, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(Left)
-							.addGap(103)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(Month, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addComponent(Uke, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-									.addComponent(Right))))
-						.addComponent(kalender, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+							.addGap(18)
+							.addComponent(kalender, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(141)
+							.addComponent(Kallender, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblUser)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(navn, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Right)
-							.addGap(10))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(Month, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Uke)
-							.addGap(18))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(Left)
-							.addPreferredGap(ComponentPlacement.UNRELATED)))
+							.addComponent(navn, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE))
+						.addComponent(Kallender, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+					.addGap(42)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(New, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(Edit)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(Detailes)
-								.addComponent(Delete, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(Detailes))
 						.addComponent(kalender, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(35))
 		);

@@ -133,7 +133,7 @@ public class Cal extends JPanel {
             if (!num.equals("")) {
                // set the current day highlighted
                setDayActive(Integer.parseInt(num));
-               System.out.println(getActiveDate().toString());
+               System.out.println(getActiveDate().toString() + "aar" + getActiveDate().getYear());
                // When this becomes a Bean, you can
                // fire some kind of DateChanged event here.
                // Also, build a similar daySetter for day-of-week btns.
@@ -242,14 +242,14 @@ public class Cal extends JPanel {
       clearDayActive();
 
       // Set the new one
-      if (newDay <= 0)
-         dd = new GregorianCalendar().get(Calendar.DAY_OF_MONTH);
-      else
-         dd = newDay;
+      //if (newDay <= 0)
+        // dd = new GregorianCalendar().get(Calendar.DAY_OF_MONTH);
+      //else
+        // dd = newDay;
       // Now shade the correct square
-      Component square = labs[(leadGap+newDay-1)/7][(leadGap+newDay-1)%7];
-      square.setBackground(Color.red);
-      square.repaint();
+      //Component square = labs[(leadGap+newDay-1)/7][(leadGap+newDay-1)%7];
+      //square.setBackground(Color.red);
+      //square.repaint();
       activeDay = newDay;
    }
 
@@ -270,6 +270,6 @@ public class Cal extends JPanel {
       System.out.println();
    }**/
    public Date getActiveDate(){
-	   return new Date(yy, mm, activeDay);
+	   return new Date(yy, mm , activeDay);
    }
 }
