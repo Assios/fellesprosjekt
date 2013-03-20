@@ -6,7 +6,9 @@ public class Calendar {
 	private ArrayList<Meeting> meetings;
 	private User user;
 	
-	public Calendar(){
+	public Calendar( ArrayList<Meeting> meetings, User user){
+		this.user = user;
+		this.meetings = meetings;
 		
 	}
 	

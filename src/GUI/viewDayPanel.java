@@ -3,9 +3,6 @@ package GUI;
 import java.util.Date;
 
 import javax.swing.JFrame;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -19,21 +16,32 @@ import java.awt.event.ActionEvent;
 
 public class viewDayPanel extends JFrame {
 	
-	public viewDayPanel(Date day, final calendarLogic cL) {
+	public viewDayPanel(Date day, modelPakke.Calendar calendar) {
+		final modelPakke.Calendar Calendar = calendar;
 
 		
 		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		
 		JButton btnEdit = new JButton("edit");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//new editMeetingPanel(selected meeting).setVisible(true);
+			}
+		});
 		
 		JButton btnAdd = new JButton("add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new createNewMeetingPanel(cL).setVisible(true);
+				new createNewMeetingPanel(Calendar).setVisible(true);
 			}
 		});
 		
-		JList list = new JList();
+		JList list = new JList(Calendar.getMeetingsOfDay(day).toArray());
 		
 		JButton btnInfo = new JButton("info");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());

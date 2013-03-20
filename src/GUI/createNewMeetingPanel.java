@@ -37,8 +37,7 @@ public class createNewMeetingPanel extends JFrame{
 	JComboBox endCombo;
 	 JTextArea descriptionArea;
 	
-	public createNewMeetingPanel(calendarLogic cl) {
-		cL=cl;
+	public createNewMeetingPanel(modelPakke.Calendar calendar) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(500, 450));
 		setLocation(new Point(800, 400));

@@ -29,14 +29,15 @@ public class MainscreenPanel extends JFrame{
 	//private JTable kalender;
 	private calendarExample.Cal kalender;
 	private calendarLogic cL;
+	modelPakke.Calendar calendar;
 	public MainscreenPanel(calendarLogic cl) {
-		cL=cl;
+		calendar = new modelPakke.Calendar(cl.getEvents(cl.getUser().getUserName()), cl.getUser());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 400));
 		setTitle("Mainframe");
 
 
-		JLabel Kallender = new JLabel("Callendar");
+		JLabel Kallender = new JLabel("Calendar");
 		Kallender.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Kallender.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -45,14 +46,14 @@ public class MainscreenPanel extends JFrame{
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
 
-		JLabel navn = new JLabel("username'");
+		JLabel navn = new JLabel(cL.getUser().getUserName());
 		navn.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
 
 		JButton New = new JButton("New");
 		New.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new createNewMeetingPanel(cL).setVisible(true);
+				new createNewMeetingPanel(calendar).setVisible(true);
 			}
 		});
 
@@ -65,9 +66,7 @@ public class MainscreenPanel extends JFrame{
 		JButton Detailes = new JButton("view");
 		Detailes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new viewDayPanel(kalender.getActiveDate(), cL).setVisible(true);
-				//new showMeetingInfoPanel(new modelPakke.Meeting().setVisible(true);
-				//maa ha tilgang til databasen
+				new viewDayPanel(kalender.getActiveDate(), calendar).setVisible(true);
 			}
 		});
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
