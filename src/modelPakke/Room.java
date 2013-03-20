@@ -11,14 +11,16 @@ public class Room {
 
 	private int size;
 	private String name;
+	private int ID;
 	private PropertyChangeSupport propChangeSupp;
 	private ArrayList<Date> roomTaken;
 
 
 	// Constructor
-	public Room(int size, String name) {
+	public Room(int id, String name, int size) {
 		this.size = size;
 		this.name = name;
+		this.setID(id);
 		propChangeSupp = new PropertyChangeSupport(this);
 	}
 
@@ -61,6 +63,14 @@ public class Room {
 
 	public void removeTaken(Date date) {
 		this.roomTaken.remove(this.roomTaken.indexOf(date));
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 
 

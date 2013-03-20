@@ -12,7 +12,7 @@ public class Meeting {
 	private String description;
 	private String title;
 	private String location;
-	private User leader;
+	private String leader;
 	private ArrayList<User> members;
 	private Alarm alarm;
 	private Room room;
@@ -32,7 +32,7 @@ public class Meeting {
 		this.ID = ID;
 		this.isActive = true;
 	}
-	public Meeting(int ID, DBconnection.TimeInterval tid, String title, String description, String location, boolean isActive){
+	public Meeting(int ID, DBconnection.TimeInterval tid, String title, String description, String location, boolean isActive, String leader){
 		this.startTime = tid.getSlutt();
 		this.endTime = tid.getStart();
 		this.title = title;
@@ -41,6 +41,7 @@ public class Meeting {
 		this.date = tid.getDato();
 		this.ID = ID;
 		this.isActive = isActive;
+		this.leader = leader;
 	}
 
 	public Meeting(){
@@ -138,11 +139,11 @@ public class Meeting {
 		this.location = location;
 	}
 
-	public User getLeader() {
+	public String getLeader() {
 		return leader;
 	}
 
-	public void setLeader(User leader) {
+	public void setLeader(String leader) {
 		this.leader = leader;
 	}
 

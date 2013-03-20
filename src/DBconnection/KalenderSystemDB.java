@@ -110,6 +110,25 @@ public class KalenderSystemDB {
 		return users;
 	}
 	
+	public Vector<Room> getRooms() throws ClassNotFoundException, SQLException{
+		Vector<Room> rooms = new Vector<Room>();
+		DBConnection db = new DBConnection(p);
+		String sql = "SELECT * FROM rom"; 
+		db.initialize();
+		ResultSet rs=db.makeSingleQuery(sql);
+		rs.beforeFirst();
+		while(rs.next()){
+			int romID = rs.getInt("romID");
+			int size = rs.getInt("antall_plasser");
+			String romNavn = rs.getString("romNavn");
+			Room rom = new Room(romID, romNavn, size);
+			rooms.add(rom);
+		}
+		rs.close();
+		db.close();
+		return rooms;
+	}
+	
 	public Vector<Integer> getEvents(int user) throws ClassNotFoundException, SQLException{
 		Vector<Integer> events = new Vector<Integer>();
 		DBConnection db = new DBConnection(p);
@@ -142,7 +161,7 @@ public class KalenderSystemDB {
 		boolean isActive = rs.getBoolean("isActive");
 		
 		TimeInterval tid = new TimeInterval(start, slutt, dato);
-		Meeting event = new Meeting(avtaleID, tid, avtaleNavn, beskrivelse, sted, isActive);
+		Meeting event = new Meeting(avtaleID, tid, avtaleNavn, beskrivelse, sted, isActive, leader);
 		
 	
 		rs.close();
