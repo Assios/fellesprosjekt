@@ -16,10 +16,8 @@ import modelPakke.*;
 public class KalenderSystemDB {
 	private Properties p;
 	private String testString;
+	private Properties properties;
 	
-	public KalenderSystemDB(Properties propertie){
-		this.p = propertie;
-	} 
 	
 	public boolean loginCheck(String user, String pass) throws ClassNotFoundException, SQLException{
 		DBConnection db=new DBConnection(p);
