@@ -7,7 +7,7 @@ import java.util.Date;
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.*;
 
-public class XMLWriter {
+public class JSONWriter {
 
     public static void main(String[] args) {
         User u = new User();

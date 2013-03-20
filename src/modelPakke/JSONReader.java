@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.thoughtworks.xstream.*;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-public class XMLReader {
+public class JSONReader {
 
     public static void main(String[] args) {
         Gson gson = new Gson();
