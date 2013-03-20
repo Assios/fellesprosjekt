@@ -33,4 +33,13 @@ public class Calendar {
 		    }
 		}return false;    	
 	}
+	public ArrayList<Meeting> getMeetingsOfDay(Date day){
+		ArrayList<Meeting> meetingsToDay = new ArrayList();
+		for (Meeting s : meetings){
+		    if (s.getDate().getYear() == day.getYear() && s.getDate().getMonth() == day.getMonth() && s.getDate().getDay() == day.getDay()){
+		    	meetingsToDay.add(s);
+		    }
+			
+		}return meetingsToDay;
+	}
 }

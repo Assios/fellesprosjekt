@@ -270,6 +270,6 @@ public class Cal extends JPanel {
       System.out.println();
    }**/
    public Date getActiveDate(){
-	   return new Date(yy, mm , activeDay);
+	   return new Date(yy, mm, activeDay);
    }
 }
