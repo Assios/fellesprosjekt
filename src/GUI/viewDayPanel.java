@@ -12,14 +12,26 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JList;
 
+import modelPakke.calendarLogic;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class viewDayPanel extends JFrame {
-	public viewDayPanel(Date day) {
+	
+	public viewDayPanel(Date day, final calendarLogic cL) {
+
 		
 		JButton btnOk = new JButton("OK");
 		
 		JButton btnEdit = new JButton("edit");
 		
 		JButton btnAdd = new JButton("add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new createNewMeetingPanel(cL).setVisible(true);
+			}
+		});
 		
 		JList list = new JList();
 		
