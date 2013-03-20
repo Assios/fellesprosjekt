@@ -37,6 +37,7 @@ public class Cal extends JPanel {
    private JComboBox monthChoice;
    /** The year choice */
    private JComboBox yearChoice;
+ 
 
    /** Construct a Cal, starting with today.
     */
@@ -269,6 +270,6 @@ public class Cal extends JPanel {
       System.out.println();
    }**/
    public Date getActiveDate(){
-	   return new Date(thisYear, thisMonth, activeDay);
+	   return new Date(yy, mm, activeDay);
    }
 }

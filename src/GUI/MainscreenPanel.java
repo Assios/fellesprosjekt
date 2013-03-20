@@ -32,7 +32,7 @@ public class MainscreenPanel extends JFrame{
 	public MainscreenPanel(calendarLogic cl) {
 		cL=cl;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(600, 300));
+		setMinimumSize(new Dimension(600, 400));
 		setTitle("Mainframe");
 
 
