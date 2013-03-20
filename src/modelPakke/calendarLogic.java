@@ -81,12 +81,6 @@ public class calendarLogic {
 
 	public void connect() {
 		try{
-			
-<<<<<<< HEAD
-    		//1. creating a socket to connect to the server
-=======
-    		//1. creating a socket to connect to the server78.91.48.59
->>>>>>> 173a0e52022ead4a8a873ee616f6c8caa7973d94
     		serverConnection = new Socket("78.91.16.62", 7899);
     		System.out.println("Connected to  78.91.16.62  in port 7899");
     		//2. get Input and Output streams
@@ -169,7 +163,7 @@ public class calendarLogic {
 		ArrayList<Events> events=getEvents(user);
 		
 		for(int i=0;i<events.size();i++){
-			Meeting m=new Meeting(events.get(i).getAvtaleID(),events.get(i).getTid(),events.get(i).getAvtaleNavn(),events.get(i).getBeskrivelse(),events.get(i).getSted(),events.get(i).getIsActive());
+			Meeting m=new Meeting(events.get(i).getAvtaleID(),events.get(i).getTid(),events.get(i).getAvtaleNavn(),events.get(i).getBeskrivelse(),events.get(i).getSted(),events.get(i).getIsActive(), user);
 			meetings.add(m);
 			
 		}

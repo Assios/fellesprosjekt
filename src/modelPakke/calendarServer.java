@@ -56,7 +56,7 @@ class doComms implements Runnable {
     private String line,input;
     private Properties prop=new Properties();
    Vector<Integer> eventIndices;
-   ArrayList<Events> events;
+   ArrayList<Meeting> events;
     KalenderSystemDB kDb;
 
     User testUser;

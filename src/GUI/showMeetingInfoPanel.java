@@ -33,7 +33,7 @@ public class showMeetingInfoPanel extends JFrame{
 		
 		JLabel lblCreator = new JLabel("Creator:");
 		
-		JLabel lblCreatorVar = new JLabel(meeting.getLeader().getName());
+		JLabel lblCreatorVar = new JLabel(meeting.getLeader());
 		//finner navnet til creator som string
 		lblCreatorVar.setEnabled(false);
 		
