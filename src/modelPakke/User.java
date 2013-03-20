@@ -3,14 +3,7 @@ package modelPakke;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Date;
-
-/**package modelPakke;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * The <code>Person</code> class stores information about a single person.
@@ -19,14 +12,36 @@ import java.util.Date;
  *
  * @version $Revision: 1.5 $ - $Date: 2005/02/20 14:52:29 $
  */
-public class User {
+public class User implements java.io.Serializable {
 	
-	private String fornavn;
-	private String etternavn;
-	private String brukernavn;
-	private String epost;
-	private Date dateOfbirth;
-	private String passord;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -121084350766087014L;
+
+	/**
+	 * This member variable holds the person's name.
+	 */
+	private String name;
+	
+	private String userName;
+	
+	/**
+	 * This member variable holds the person's email address.
+	 */
+	private String email;
+	
+	/**
+	 * This member variable holds the person's date of birth.
+	 */
+	private Date dateOfBirth;
+	
+	/**
+	 * This member variable holds a unique identifier for this object.
+	 */
+	private long id;
+	
+	private String password;
 	
 	/**
 	 * This member variable provides functionality for notifying of changes to
@@ -71,15 +86,19 @@ public class User {
 	 * {@linkplain #getId() id field} is set to current time when the object is created.
 	 */
 	public User() {
-		fornavn = "";
-		etternavn = "";
-		brukernavn = "";
-		epost = "";
-		dateOfbirth = new Date();
-		passord = "";
+		name = "";
+		email = "";
+		dateOfBirth = null;
+		id = System.currentTimeMillis();
 		propChangeSupp = new PropertyChangeSupport(this);
 	}
 	
+	
+	public User(String name, String email, Date dateOfBirth){
+		this.name=name;
+		this.email=email;
+		this.dateOfBirth=dateOfBirth;
+	}
 	/**
 	 * Constructs a new <code>Person</code> object with specified name, email, and date
 	 * of birth.
@@ -88,13 +107,13 @@ public class User {
 	 * @param email The person's e-mail address
 	 * @param dateOfBirth The person's date of birth.
 	 */
-	public User(String uN,String fornavn, String etternavn, String epost, Date dateOfbirth) {
+	public User(String uN,String name, String email, String p, Date dateOfBirth) {
 		this();
-		this.brukernavn = uN;
-		this.fornavn = fornavn;
-		this.etternavn = etternavn;
-		this.epost = epost;
-		this.dateOfbirth = dateOfbirth;
+		this.userName=uN;
+		this.name = name;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.password=p;
 	}
 	
 	/**
@@ -123,15 +142,11 @@ public class User {
 	 * @see java.beans.PropertyChangeListener <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/beans/PropertyChangeListener.html">java.beans.PropertyChangeListener</a>
 	 * @see java.beans.PropertyChangeEvent <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/beans/PropertyChangeEvent.html">java.beans.PropertyChangeEvent</a>
 	 */
-	public void setName(String fornavn, String etternavn) {
-		String oldFornavn = this.fornavn;
-		String oldEtternavn = this.etternavn;
-		this.fornavn = fornavn;
-		this.etternavn = etternavn;
-		PropertyChangeEvent event = new PropertyChangeEvent(this, NAME_PROPERTY_NAME, oldFornavn, fornavn);
-		PropertyChangeEvent event2 = new PropertyChangeEvent(this, NAME_PROPERTY_NAME, oldEtternavn, etternavn);
+	public void setName(String name) {
+		String oldName = this.name;
+		this.name = name;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, NAME_PROPERTY_NAME, oldName, name);
 		propChangeSupp.firePropertyChange(event);
-		propChangeSupp.firePropertyChange(event2);
 	}
 	
 	/**
@@ -161,9 +176,9 @@ public class User {
 	 * @see java.beans.PropertyChangeEvent <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/beans/PropertyChangeEvent.html">java.beans.PropertyChangeEvent</a>
 	 */
 	public void setEmail(String email) {
-		String oldEmail = this.epost;
-		this.epost = email;
-		PropertyChangeEvent event = new PropertyChangeEvent(this, EMAIL_PROPERTY_NAME, oldEmail, this.epost);
+		String oldEmail = this.email;
+		this.email = email;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, EMAIL_PROPERTY_NAME, oldEmail, this.email);
 		propChangeSupp.firePropertyChange(event);
 	}
 	
@@ -195,9 +210,9 @@ public class User {
 	 * @see java.beans.PropertyChangeEvent <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/beans/PropertyChangeEvent.html">java.beans.PropertyChangeEvent</a>
 	 */	
 	public void setDateOfBirth(Date dateOfBirth) {
-		Date oldDateOfBirth = this.dateOfbirth;
-		this.dateOfbirth = dateOfBirth;
-		PropertyChangeEvent event = new PropertyChangeEvent(this, DATEOFBIRTH_PROPERTY_NAME, oldDateOfBirth, this.dateOfbirth);
+		Date oldDateOfBirth = this.dateOfBirth;
+		this.dateOfBirth = dateOfBirth;
+		PropertyChangeEvent event = new PropertyChangeEvent(this, DATEOFBIRTH_PROPERTY_NAME, oldDateOfBirth, this.dateOfBirth);
 		propChangeSupp.firePropertyChange(event);
 	}
 	
@@ -207,7 +222,7 @@ public class User {
 	 * @return The person's name.
 	 */
 	public String getName() {
-		return fornavn + " " + etternavn;
+		return name;
 	}
 
 	/**
@@ -216,7 +231,7 @@ public class User {
 	 * @return The person's email address.
 	 */
 	public String getEmail() {
-		return epost;
+		return email;
 	}
 	
 	/**
@@ -225,9 +240,12 @@ public class User {
 	 * @return The person's date of birth.
 	 */
 	public Date getDateOfBirth() {
-		return dateOfbirth;
+		return dateOfBirth;
 	}
 	
+	public String getUserName(){
+		return userName;
+	}
 	/**
 	 * Returns this object's unique identification.
 	 * 
@@ -235,11 +253,15 @@ public class User {
 	 *
 	 */
 	public String getPassword(){
-		return passord;
+		return password;
 	}
+	
+	 public long getId() {
+			return id;
+		}
 	 
-	 public String getUserName(){
-		 return brukernavn;
+	 public void setUserName(String uN){
+		 userName=uN;
 	 }
 	/**
 	 * Add a {@link java.beans.PropertyChangeListener} to the listener list.
