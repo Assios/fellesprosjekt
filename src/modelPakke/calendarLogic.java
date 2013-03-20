@@ -38,7 +38,7 @@ public class calendarLogic {
     String disconnect="dc";
     ArrayList<Meeting> meetings;
     ArrayList<User> availableUsers;
-
+    User user;
 
 
 	public calendarLogic() {
@@ -132,6 +132,7 @@ public class calendarLogic {
 
 		try{			
 			try{	
+					user.setUserName(id);
 					Response resp;
 					out.writeObject(r);
 					out.flush();
@@ -182,7 +183,10 @@ public class calendarLogic {
 
 		}
 	}
-
+	
+	public User getUser(){
+		return user;
+	}
 
 	public ArrayList<Meeting> getEvents(String user){
 		Request r=new Request("hentEvents",user);
