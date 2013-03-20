@@ -35,6 +35,8 @@ public class createNewMeetingPanel extends JFrame{
 	JComboBox dateCombo;
 	JComboBox startCombo;
 	JComboBox endCombo;
+	 JTextArea descriptionArea;
+	
 	public createNewMeetingPanel(calendarLogic cl) {
 		cL=cl;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -73,7 +75,8 @@ public class createNewMeetingPanel extends JFrame{
 
 		btnDelete = new JButton("Delete");
 
-
+		descriptionArea = new JTextArea();
+		
 		lblUser = new JLabel("User:");
 
 
@@ -121,7 +124,7 @@ public class createNewMeetingPanel extends JFrame{
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cL.createCalendarEvent(meetingNameField.getText(), "", (Time)startCombo.getSelectedItem(), (Time)endCombo.getSelectedItem(),(Date)dateCombo.getSelectedItem(), invited);
+				cL.createCalendarEvent(meetingNameField.getText(), "", (Time)startCombo.getSelectedItem(), (Time)endCombo.getSelectedItem(),(Date)dateCombo.getSelectedItem(), invited,descriptionArea.getText());
 				dispose();
 			}
 		});
@@ -242,7 +245,7 @@ public class createNewMeetingPanel extends JFrame{
 		);
 
 
-		JTextArea descriptionArea = new JTextArea();
+		
 		descriptionArea.setLineWrap(true);
 		scrollPane.setViewportView(descriptionArea);
 		getContentPane().setLayout(groupLayout);

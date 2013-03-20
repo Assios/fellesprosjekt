@@ -32,11 +32,12 @@ public class Cal extends JPanel {
    /** Today's month */
    protected final int thisMonth = calendar.get(Calendar.MONTH);
    /** One of the buttons. We just keep its reference for getBackground().*/
-   private JButton b0;
+   private JButton b0 = new JButton("");
    /** The month choice */
    private JComboBox monthChoice;
    /** The year choice */
    private JComboBox yearChoice;
+ 
 
    /** Construct a Cal, starting with today.
     */
@@ -118,13 +119,13 @@ public class Cal extends JPanel {
       bp.setLayout(new GridLayout(7,7));
       labs = new JButton[6][7];   // first row is days
 
-      bp.add(b0 = new JButton("S"));
-      bp.add(new JButton("M"));
-      bp.add(new JButton("T"));
-      bp.add(new JButton("W"));
-      bp.add(new JButton("R"));
-      bp.add(new JButton("F"));
-      bp.add(new JButton("S"));
+      bp.add(new JLabel("Sun"));
+      bp.add(new JLabel("Mon"));
+      bp.add(new JLabel("Tue"));
+      bp.add(new JLabel("Wed"));
+      bp.add(new JLabel("Thu"));
+      bp.add(new JLabel("Fre"));
+      bp.add(new JLabel("Sat"));
 
       ActionListener dateSetter = new ActionListener() {
          public void actionPerformed(ActionEvent e) {
@@ -269,6 +270,6 @@ public class Cal extends JPanel {
       System.out.println();
    }**/
    public Date getActiveDate(){
-	   return new Date(thisYear, thisMonth, activeDay);
+	   return new Date(yy, mm, activeDay);
    }
 }
