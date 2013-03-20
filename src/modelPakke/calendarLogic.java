@@ -38,7 +38,7 @@ public class calendarLogic {
     String disconnect="dc";
     ArrayList<Meeting> meetings;
     ArrayList<User> availableUsers;
-    User user;
+    User user = new User();
 
 
 	public calendarLogic() {
