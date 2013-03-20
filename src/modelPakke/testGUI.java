@@ -38,7 +38,7 @@ public class testGUI extends JPanel{
 		add(sL);
 		add(fromServer);
 		u=new User("Brukernavn","Fornavn","Etternavn", "Epost", new Date(22,22,22));
-		r=new Room(3, "rom");
+		r=new Room(3, "rom", 10);
 		connectButton.addActionListener(new connectButtonAction());
 		disconnectButton.addActionListener(new disconnectButtonAction());
 		sendButton.addActionListener(new sendButtonAction());

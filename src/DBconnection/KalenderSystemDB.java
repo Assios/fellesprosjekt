@@ -129,10 +129,10 @@ public class KalenderSystemDB {
 		return rooms;
 	}
 	
-	public Vector<Integer> getEvents(int user) throws ClassNotFoundException, SQLException{
+	public Vector<Integer> getEvents(String string) throws ClassNotFoundException, SQLException{
 		Vector<Integer> events = new Vector<Integer>();
 		DBConnection db = new DBConnection(p);
-		String sql = "SELECT avtaleID FROM invitert WHERE brukernavn='" + user + "' AND " +
+		String sql = "SELECT avtaleID FROM invitert WHERE brukernavn='" + string + "' AND " +
 				"erMed = 'godtatt'";
 		db.initialize();
 		ResultSet rs=db.makeSingleQuery(sql);

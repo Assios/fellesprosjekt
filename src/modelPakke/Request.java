@@ -9,7 +9,10 @@ import java.util.Vector;
 
 public class Request implements java.io.Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6803769161330198627L;
 	String userName,password,avtaleNavn, leader,type,description;
 	Time start, slutt;
 	Date dato;
