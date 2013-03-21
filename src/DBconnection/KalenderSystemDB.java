@@ -324,7 +324,7 @@ public class KalenderSystemDB {
 		ps.setInt(1, romID);
 		ps.setTime(2, start);
 		ps.setTime(3, slutt);
-		ps.setDate(3, dato);
+		ps.setDate(4, dato);
 		ps.executeUpdate();
 		
 		db.close();
