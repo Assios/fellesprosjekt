@@ -1,5 +1,6 @@
 package DBconnection;
 
+
 public class Events {
 	private int avtaleID;
 	private String avtaleNavn;
@@ -8,7 +9,8 @@ public class Events {
 	private boolean isActive;
 	private String beskrivelse;
 	private String sted;
-	
+
+
 	public Events(int avtaleID, String avtaleNavn, String avtaleLeder, TimeInterval tid, boolean isActive, String beskrivelse, String sted){
 		this.avtaleID = avtaleID;
 		this.avtaleNavn = avtaleNavn;
@@ -18,7 +20,8 @@ public class Events {
 		this.beskrivelse = beskrivelse;
 		this.sted = sted;
 	}
-	
+
+
 	public int getAvtaleID(){
 		return this.avtaleID;
 	}
