@@ -161,7 +161,7 @@ public class calendarLogic {
 	}
 
 
-	public void createCalendarEvent(String avtaleNavn, String leader, Time start, Time slutt, Date dato, String description){
+	public void createCalendarEvent(String avtaleNavn, String leader, Time start, Time slutt, Date dato, Vector<String> invited2, String description){
 		String oE="opprettEvent";
 		
 
