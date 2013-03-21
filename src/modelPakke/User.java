@@ -3,7 +3,7 @@ package modelPakke;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * The <code>Person</code> class stores information about a single person.
@@ -99,6 +99,13 @@ public class User implements java.io.Serializable {
 		this.email=email;
 		this.dateOfBirth=dateOfBirth;
 	}
+	
+	public User(String username, String name, String email, Date dateOfBirth){
+		this.name=name;
+		this.email=email;
+		this.dateOfBirth=dateOfBirth;
+	}
+
 	/**
 	 * Constructs a new <code>Person</code> object with specified name, email, and date
 	 * of birth.

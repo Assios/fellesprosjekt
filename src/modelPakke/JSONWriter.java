@@ -17,18 +17,18 @@ public class JSONWriter {
         //Note: This can also be done with a constructor.
         //Since we want to show that XStream can serialize
         //even without a constructor, this approach is used.
-        u.setName("Jack", "Thompson");
+        u.setName("Jack");
         u.setEmail("asgas@gmail.com");
         u.setDateOfBirth(new Date(1992,03,20));
         
-        u2.setName("Steve", "Johnson");
+        u2.setName("Steve");
         u2.setEmail("hsdhsdfh@hotmail.net");
         u.setDateOfBirth(new Date(1992,03,21));
         
 
         //Serialize the object
 		Gson gson = new Gson();
-		User user = new User("Brukernavn","Fornavn","Etternavn", "Epost", new Date(22,22,22));
+		User user = new User("Brukernavn", "Navn", "Epost", new Date(05, 05, 05));
 		
 		//Konverterer fra Javaobjekt til JSON.
 		String json = gson.toJson(user);

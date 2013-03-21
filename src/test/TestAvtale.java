@@ -25,7 +25,7 @@ public class TestAvtale extends TestCase {
 		avtale.setStartTime(1);
 		avtale.setEndTime(3);
 		avtale.setDescription("Møtetest");
-		Room room = new Room(4,"45");
+		Room room = new Room(4,"45", 5);
 		avtale.setRoom(room);
 		// denne avtalen skal automatisk komme opp i databasen nå
 		//gjør en spørring mot databasen
