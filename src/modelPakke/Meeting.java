@@ -4,7 +4,7 @@ import java.util.*;
 import java.sql.*;
 import java.sql.Date;
 
-public class Meeting {
+public class Meeting implements java.io.Serializable {
 	
 	private Time startTime;
 	private Time endTime;
@@ -55,7 +55,7 @@ public class Meeting {
 		this.isActive = true;
 	}
 	
-	/* TIDEN SETTES PÅ DENNE FORMEN:
+	/* TIDEN SETTES Pï¿½ DENNE FORMEN:
 		year - a year after 1900
 		month - a month between 0-11
 		date - day of the month between 1-31
