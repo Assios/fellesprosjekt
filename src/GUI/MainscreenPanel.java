@@ -66,7 +66,7 @@ public class MainscreenPanel extends JFrame{
 		JButton Detailes = new JButton("view");
 		Detailes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new viewDayPanel(kalender.getActiveDate(), calendar).setVisible(true);
+				new viewDayPanel(kalender.getActiveDate(),calendar).setVisible(true);
 			}
 		});
 		Detailes.setFont(new Font("Tahoma", Font.PLAIN, 10));
