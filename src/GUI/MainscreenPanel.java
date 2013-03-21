@@ -32,10 +32,10 @@ import modelPakke.*;
 
 public class MainscreenPanel extends JFrame{
 	//private JTable kalender;
-	private calendarExample.Cal kalender;
+	private Cal kalender;
 	private calendarLogic cL;
 	public MainscreenPanel(calendarLogic cl) {
-		final modelPakke.Calendar calendar = new Calendar(cl.getEvents(), cl.getUser());
+		cL=cl;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(600, 300));
 		setTitle("Mainframe");
@@ -72,7 +72,7 @@ public class MainscreenPanel extends JFrame{
 		JButton New = new JButton("New");
 		New.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new createNewMeetingPanel(calendar).setVisible(true);
+				new createNewMeetingPanel(cL).setVisible(true);
 			}
 		});
 
@@ -98,7 +98,7 @@ public class MainscreenPanel extends JFrame{
 
 
 
-		kalender = new calendarExample.Cal(calendar.getMeetingList());
+		kalender = new Cal(cL.getEvents());
 
 		
 		kalender.setBorder(new LineBorder(new Color(0, 0, 0)));
