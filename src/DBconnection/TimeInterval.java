@@ -1,7 +1,9 @@
 package DBconnection;
 
+
 import java.sql.Time;
 import java.sql.Date;
+
 
 public class TimeInterval {
 	private Time start;
