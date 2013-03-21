@@ -56,7 +56,7 @@ class doComms implements Runnable {
     private String line,input;
     private Properties prop=new Properties();
    Vector<Integer> eventIndices;
-   ArrayList<Meeting> events;
+   ArrayList<Meeting> events=new ArrayList<Meeting>();
     KalenderSystemDB kDb;
 
     User testUser;
@@ -102,11 +102,15 @@ class doComms implements Runnable {
        		 	case "hentEvents": eventIndices=kDb.getEvents(r.getUserName());
        		
        		 				Iterator i = eventIndices.iterator();
-       		 				
+       		 				System.out.println(i+"dsf");
+       		 				System.out.println(new Integer(i.next().toString()));
        		 				while (i.hasNext()) {
        		 					events.add(kDb.getEvent(new Integer(i.next().toString())));
        		 				}
+       		 			System.out.println(events);
        		 				out.writeObject(events);
+       		 				out.flush();
+       		 				break;
        		 	}
        		 	
        		 	
