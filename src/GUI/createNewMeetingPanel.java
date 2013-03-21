@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JList;
@@ -13,6 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.AbstractListModel;
+
+import DBconnection.TimeInterval;
+
 import java.awt.Point;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -32,20 +36,23 @@ public class createNewMeetingPanel extends JFrame{
 	JLabel lblUser;
 	JLabel userVar;
 	JLabel lblDate;
+	JLabel room1,room2,room3,room4,room5;
 	JComboBox dateCombo;
 	JComboBox startCombo;
 	JComboBox endCombo;
 	 JTextArea descriptionArea;
-	
-	public createNewMeetingPanel(modelPakke.Calendar calendar) {
+	 JComboBox roomCombo;
+	public createNewMeetingPanel(calendarLogic cl) {
+		cL=cl;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(500, 450));
 		setLocation(new Point(800, 400));
 
+		cL.updateRooms();
 
 		JLabel lblMeetingName = new JLabel("Meeting name:");
 
-
+		
 		meetingNameField = new JTextField();
 		meetingNameField.setColumns(10);
 
@@ -62,12 +69,13 @@ public class createNewMeetingPanel extends JFrame{
 				return invited.get(index);
 			}
 		});
-
-
+		
+		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new GUI.addMembersToMeeting().setVisible(true);
+				new GUI.addMembersToMeeting(cL).setVisible(true);
+				System.out.println("dafuq");
 			}
 		});
 
@@ -90,7 +98,7 @@ public class createNewMeetingPanel extends JFrame{
 		cL.addDatesToJComboBox(dateCombo);
 
 		JLabel lblStart = new JLabel("Start:");
-
+		
 
 		JLabel lblEnd = new JLabel("End:");
 
@@ -109,10 +117,10 @@ public class createNewMeetingPanel extends JFrame{
 
 		JLabel lblRoom = new JLabel("Room:");
 
-
-		JComboBox roomCombo = new JComboBox();
-
-
+		roomCombo = new JComboBox(cL.getRooms().toArray());
+		
+		
+		
 		JLabel lblLocation = new JLabel("Location:");
 
 
@@ -123,7 +131,9 @@ public class createNewMeetingPanel extends JFrame{
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cL.createCalendarEvent(meetingNameField.getText(), "", (Time)startCombo.getSelectedItem(), (Time)endCombo.getSelectedItem(),(Date)dateCombo.getSelectedItem(), invited,descriptionArea.getText());
+				
+					cL.createCalendarEvent((Room)roomCombo.getSelectedItem(),meetingNameField.getText(), cL.getUser().getUserName(), (Time)startCombo.getSelectedItem(), (Time)endCombo.getSelectedItem(),(Date)dateCombo.getSelectedItem(),descriptionArea.getText(),locationField.getText());
+				
 				dispose();
 			}
 		});
