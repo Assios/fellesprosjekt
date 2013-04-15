@@ -1,11 +1,23 @@
-  public void connect(InetAddress remoteAddress, int remotePort) throws IOException,
+ public void connect(InetAddress remoteAddress, int remotePort) throws IOException,
             SocketTimeoutException {
         //throw new NotImplementedException();
        //EGEN KODE
-      KtnDatagram packet=constructInternalPacket(Flag.SYN);
-        super.remoteAddress=remoteAddress.getHostAddress();
-        super.remotePort=remotePort;
+      try{
+    		
+    		KtnDatagram packet=constructInternalPacket(Flag.SYN);    	
+    		super.remoteAddress=remoteAddress.getHostAddress();
+        	super.remotePort=remotePort;
        
-        simplySendPacket(packet);
-        //SLUTT EGEN KODE
-    } 
+        	simplySendPacket(packet);
+        
+    	}
+    	catch(IOException ioe){
+    		Log.writeToLog(packet, "IOException: Something was went wrong"
+                    + "with input/output", "ConnectionImpl");
+    	}
+    	catch(ClExcepetion cle){
+    		Log.writeToLog(packet, "CLException: Could not establish a "
+                    + "connection to the specified address/port!", "ConnectionImpl");
+    	}
+    	//SLUTT EGEN KODE
+    }
