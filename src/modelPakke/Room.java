@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Room {
+public class Room implements java.io.Serializable {
 
 
 	private int size;
@@ -75,7 +75,7 @@ public class Room {
 
 
 	/*
-	 * Her må vi ha en egen kalender som kan holde oversikt over når rommet er ledig 
+	 * Her mï¿½ vi ha en egen kalender som kan holde oversikt over nï¿½r rommet er ledig 
 	 * 
 	 */
 }
