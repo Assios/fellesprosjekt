@@ -45,8 +45,13 @@ public class ConnectionImpl extends AbstractConnection {
      * @param myPort
      *            - the local port to associate with this connection
      */
-    public ConnectionImpl(int myPort) {
-        throw new NotImplementedException();
+    public ConnectionImpl(int myPort, int remotePort, String myAddress, String remoteAddress) {
+        this.myPort = myPort;
+        this.remotePort = remotePort;
+        this.myAddress = myAddress;
+        this.remoteAddress = remoteAddress;
+        state = State.SYN_RCVD;
+        
     }
 
     private String getIPv4Address() {
